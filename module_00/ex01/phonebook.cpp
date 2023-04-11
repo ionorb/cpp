@@ -1,41 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.cpp                                           :+:      :+:    :+:   */
+/*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 18:27:10 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/12 00:25:57 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/12 00:53:48 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
 Contact::Contact(void)
-{
-	// std::cout << "contact created!" << std::endl;
-}
+{}
 
 PhoneBook::PhoneBook(void)
 {
-	std::cout << "phonebook created!" << std::endl;
 	number_of_contacts = 0;
 }
 
 Contact::~Contact(void)
-{
-	// std::cout << "contact destroyed!" << std::endl;
-}
+{}
 
 PhoneBook::~PhoneBook(void)
-{
-	// std::cout << "phonebook destroyed!" << std::endl;
-}
+{}
 
 t_info Contact::getinfo()
 {
 	return (info);
+}
+
+Contact PhoneBook::getcontact(int index)
+{
+	return (contacts[index]);
+}
+
+void PhoneBook::addcontact(int index, Contact new_contact)
+{
+	contacts[index] = new_contact;
+	number_of_contacts++;
+}
+
+int PhoneBook::getnumcontacts(void)
+{
+	return (number_of_contacts);
+}
+
+void	display_column(std::string content)
+{
+	if (content.size() > 10)
+	{
+		content.resize(10);
+		content[9] = '.';
+	}
+	std::cout << std::setw(10) << content << "|";
 }
 
 std::string input_loop(std::string prompt)
@@ -61,44 +80,16 @@ void Contact::setinfo(int index)
 	info.darkest_secret = input_loop("darkest secret");
 }
 
-Contact PhoneBook::getcontact(int index)
-{
-	return (contacts[index]);
-}
-
-void PhoneBook::addcontact(int index, Contact new_contact)
-{
-	contacts[index] = new_contact;
-	number_of_contacts++;
-}
-
-int PhoneBook::getnumcontacts(void)
-{
-	return (number_of_contacts);
-}
-
-void PhoneBook::setnumcontacts(int num)
-{
-	number_of_contacts = num;
-}
-void	display_column(std::string content)
-{
-	if (content.size() > 10)
-	{
-		content.resize(10);
-		content[9] = '.';
-	}
-	std::cout << std::setw(10) << content << "|";
-}
-
 void	search_phonebook(PhoneBook phonebook)
 {
 	t_info info;
-	std::string str;
-	int num = phonebook.getnumcontacts();
+	int	index;
+	int num_contacts = phonebook.getnumcontacts();
 
+	if (num_contacts == 0)
+		return (void)puts("no contacts yet!");
 	puts("searching phonebook...");
-	for (int i = 0; i < 8 && i < num; i++)
+	for (int i = 0; i < 8 && i < num_contacts; i++)
 	{
 		std::cout << "|";
 		info = phonebook.getcontact(i).getinfo();
@@ -108,12 +99,19 @@ void	search_phonebook(PhoneBook phonebook)
 		display_column(info.nickname);
 		std::cout << std::endl;
 	}
-	puts("enter index");
+	index = input_loop("enter index of contact you want to see")[0] - '0';
+	if (index < 0 || index > 8 || index > num_contacts)
+		return;
+	info = phonebook.getcontact(index).getinfo();
+	std::cout << info.first_name << std::endl;
+	std::cout << info.last_name << std::endl;
+	std::cout << info.nickname << std::endl;
+	std::cout << info.phone_number << std::endl;
+	std::cout << info.darkest_secret << std::endl;
 }
 
 Contact	create_contact(int index)
 {
-	t_info new_info;
 	Contact new_contact;
 
 	puts("adding info...");

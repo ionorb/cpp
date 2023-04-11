@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 21:40:04 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/12 00:16:51 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/12 00:30:50 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ class PhoneBook
 		void addcontact(int index, Contact new_contact);
 		Contact getcontact(int index);
 		int getnumcontacts();
-		void setnumcontacts(int num);
+		// void setnumcontacts(int num);
 	private:
 		Contact contacts[8];
 		int number_of_contacts;

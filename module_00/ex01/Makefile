@@ -9,7 +9,7 @@ FLAGS		+= -I$(INCLUDES)
 BINARY = phonebook
 
 SOURCES_DIR		= ./
-SOURCES_FILES	= test.cpp
+SOURCES_FILES	= phonebook.cpp
 SRCS			= $(addprefix $(SOURCES_DIR), $(SOURCES_FILES))
 
 OBJECTS_DIR		= objs/
