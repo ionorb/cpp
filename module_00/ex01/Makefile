@@ -1,8 +1,10 @@
 # VARIABLES
 COMPILER	= c++
+INCLUDES	= ./
 FLAGS		= -std=c++98
 FLAGS		+= -Wall -Wextra -Werror
 FLAGS		+= -g3
+FLAGS		+= -I$(INCLUDES)
 
 BINARY = phonebook
 
