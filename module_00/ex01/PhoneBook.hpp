@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 21:40:04 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/11 22:46:40 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/12 00:16:51 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include <string>
 #include <cstring>
 #include <cstdio>
+#include <sstream>
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct s_info
 {
@@ -32,19 +35,7 @@ class Contact
 		Contact();
 		~Contact();
 		t_info getinfo();
-		// void setinfo(t_info new_info);
-		void setinfo();
-		// std::string getfirstname();
-		// std::string getlastname();
-		// std::string getnickname();
-		// std::string getphonenumber();
-		// std::string getsecret();
-		// int getindex();
-		// void setfirstname(std::string str);
-		// void setlastname(std::string str);
-		// void setnickname(std::string str);
-		// void setphonenumber(std::string str);
-		// void setsecret(std::string str);
+		void setinfo(int index);
 	private:
 		t_info info;
 };
@@ -56,6 +47,9 @@ class PhoneBook
 		~PhoneBook();
 		void addcontact(int index, Contact new_contact);
 		Contact getcontact(int index);
+		int getnumcontacts();
+		void setnumcontacts(int num);
 	private:
 		Contact contacts[8];
+		int number_of_contacts;
 };
