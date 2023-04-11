@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 18:27:10 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/12 00:53:48 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/12 01:06:57 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,14 @@ void	search_phonebook(PhoneBook phonebook)
 		std::cout << std::endl;
 	}
 	index = input_loop("enter index of contact you want to see")[0] - '0';
-	if (index < 0 || index > 8 || index > num_contacts)
-		return;
+	if (index < 0 || index > 8 || index >= num_contacts)
+		return (void)puts("index out of range");
 	info = phonebook.getcontact(index).getinfo();
-	std::cout << info.first_name << std::endl;
-	std::cout << info.last_name << std::endl;
-	std::cout << info.nickname << std::endl;
-	std::cout << info.phone_number << std::endl;
-	std::cout << info.darkest_secret << std::endl;
+	std::cout << "first name: " << info.first_name << std::endl;
+	std::cout << "last name: " << info.last_name << std::endl;
+	std::cout << "nickname: " << info.nickname << std::endl;
+	std::cout << "phone number: " << info.phone_number << std::endl;
+	std::cout << "darkest secret: " << info.darkest_secret << std::endl;
 }
 
 Contact	create_contact(int index)
