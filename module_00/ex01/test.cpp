@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 18:27:10 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/11 22:43:54 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/11 23:21:21 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Contact::Contact(void)
 {
-	std::cout << "contact created!" << std::endl;
+	// std::cout << "contact created!" << std::endl;
 }
 
 PhoneBook::PhoneBook(void)
@@ -24,12 +24,12 @@ PhoneBook::PhoneBook(void)
 
 Contact::~Contact(void)
 {
-	std::cout << "contact destroyed!" << std::endl;
+	// std::cout << "contact destroyed!" << std::endl;
 }
 
 PhoneBook::~PhoneBook(void)
 {
-	std::cout << "phonebook destroyed!" << std::endl;
+	// std::cout << "phonebook destroyed!" << std::endl;
 }
 
 t_info Contact::getinfo()
@@ -37,9 +37,26 @@ t_info Contact::getinfo()
 	return (info);
 }
 
-void Contact::setinfo(t_info new_info)
+std::string input_loop(std::string prompt)
 {
-	info = new_info;
+	std::string info;
+
+	do{
+		std::cout << prompt + ": ";
+		getline(std::cin, info);
+	} while (info.find_first_not_of("\t\n\v\f\r ") == std::string::npos);
+	return (info);
+}
+
+void Contact::setinfo()
+{
+	std::string input;
+
+	info.first_name = input_loop("first name");
+	info.last_name = input_loop("last name");
+	info.nickname = input_loop("nickname");
+	info.phone_number = input_loop("phone number");
+	info.darkest_secret = input_loop("darkest secret");
 }
 
 Contact PhoneBook::getcontact(int index)
@@ -52,53 +69,45 @@ void PhoneBook::addcontact(int index, Contact new_contact)
 	contacts[index] = new_contact;
 }
 
-void	search_phonebook(void)
+void	search_phonebook(PhoneBook phonebook)
 {
+	
 	puts("searching phonebook...");
+	for (int i = 0; i < 8; i++)
+	{
+		std::cout << phonebook.getcontact(i).getinfo().first_name << std::endl;
+	}
 }
 
-void	add_info(void)
+Contact	create_contact(void)
 {
 	t_info new_info;
+	Contact new_contact;
 
 	puts("adding info...");
-	std::cout << "first name: ";
-	std::cout << "last name: ";
-	std::cout << "nickname: ";
-	std::cout << "phone number: ";
-	std::cout << "darkest secret: ";
-	// for (int i = 0; i < 4; i++)
-	// {
-	// 	std::cout << "first name: ";
-	// 	getline(std::cin, field[i]);
-	// 	// std::cout << std::setw(10);
-	// }
-	// std::cout << "|";
-	// for (int i = 0; i < 4; i++)
-	// {
-	// 	if (field[0].size() > 10)
-	// 	{
-	// 		field[i].resize(10);
-	// 		field[i][9] = '.';
-	// 	}
-	// 	std::cout << std::setw(10) << field[i] << "|";
-	// }
+	new_contact.setinfo();
+	return (new_contact);
 }
 
 int	main()
 {
-	// int fin = 1; 
+	int index, i;
 	std::string input;
+	PhoneBook phonebook;
 
-	do {
+	index = i = 0;
+	do
+	{
+		index = i % 8;
 		getline(std::cin, input);
 		if (!input.compare("ADD"))
-			add_info();
-		if (!input.compare("SEARCH"))
-			search_phonebook();
+			phonebook.addcontact(index, create_contact());
+		else if (!input.compare("SEARCH"))
+			search_phonebook(phonebook);
 		else if (input.compare("EXIT"))
 			std::cout << \
 			"Please enter a valid command: \"ADD\", \"SEARCH\" or \"EXIT\"\n";
+		i++;
 	} while (input.compare("EXIT"));
 	return (0);
 }

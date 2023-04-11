@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 21:40:04 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/11 22:38:43 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/11 22:46:40 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ class Contact
 		Contact();
 		~Contact();
 		t_info getinfo();
-		void setinfo(t_info new_info);
+		// void setinfo(t_info new_info);
+		void setinfo();
 		// std::string getfirstname();
 		// std::string getlastname();
 		// std::string getnickname();
