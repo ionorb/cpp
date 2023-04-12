@@ -6,12 +6,13 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 18:27:10 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/12 01:06:57 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/12 11:41:26 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
+//constructors
 Contact::Contact(void)
 {}
 
@@ -20,12 +21,14 @@ PhoneBook::PhoneBook(void)
 	number_of_contacts = 0;
 }
 
+//destructors
 Contact::~Contact(void)
 {}
 
 PhoneBook::~PhoneBook(void)
 {}
 
+//gets and sets
 t_info Contact::getinfo()
 {
 	return (info);
@@ -47,19 +50,9 @@ int PhoneBook::getnumcontacts(void)
 	return (number_of_contacts);
 }
 
-void	display_column(std::string content)
-{
-	if (content.size() > 10)
-	{
-		content.resize(10);
-		content[9] = '.';
-	}
-	std::cout << std::setw(10) << content << "|";
-}
-
 std::string input_loop(std::string prompt)
 {
-	std::string info;
+	std::string	info;
 
 	do{
 		std::cout << prompt + ": ";
@@ -70,7 +63,7 @@ std::string input_loop(std::string prompt)
 
 void Contact::setinfo(int index)
 {
-	std::string input;
+	std::string	input;
 
 	info.index = index;
 	info.first_name = input_loop("first name");
@@ -80,11 +73,22 @@ void Contact::setinfo(int index)
 	info.darkest_secret = input_loop("darkest secret");
 }
 
+void	display_column(std::string content)
+{
+	if (content.size() > 10)
+	{
+		content.resize(10);
+		content[9] = '.';
+	}
+	std::cout << std::setw(10) << content << "|";
+}
+
+//main functions
 void	search_phonebook(PhoneBook phonebook)
 {
-	t_info info;
-	int	index;
-	int num_contacts = phonebook.getnumcontacts();
+	t_info	info;
+	int		index;
+	int		num_contacts = phonebook.getnumcontacts();
 
 	if (num_contacts == 0)
 		return (void)puts("no contacts yet!");
@@ -121,9 +125,9 @@ Contact	create_contact(int index)
 
 int	main()
 {
-	int index, i;
-	std::string input;
-	PhoneBook phonebook;
+	int			index, i;
+	std::string	input;
+	PhoneBook	phonebook;
 
 	index = i = 0;
 	do
