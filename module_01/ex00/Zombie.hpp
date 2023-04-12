@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:30:20 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/12 15:44:20 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/12 19:20:16 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,16 @@
 #include <string>
 #include <iostream>
 
-class	Zombie {
-
-
+class	Zombie
+{
 	public:
-	
-		Zombie(std::string new_name);
+		Zombie(void);
 		~Zombie(void);
 		void	announce(void);
-
+		void	setname(std::string new_name);
 
 	private:
-
 		std::string	name;
-
-
 };
 
 Zombie* newZombie(std::string name);
