@@ -6,10 +6,10 @@ FLAGS += -Wall -Werror -Wextra
 FLAGS += -g3
 FLAGS += -I$(INCLUDES)
 
-BINARY = harlFilter
+BINARY = fixed
 
 SOURCE_DIR = ./
-SOURCES_FILES =	main.cpp Harl.cpp
+SOURCES_FILES =	main.cpp Fixed.cpp
 SRCS = $(addprefix $(SOURCE_DIR), $(SOURCES_FILES))
 
 OBJ_DIR = objs/
