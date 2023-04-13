@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 23:19:59 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/13 20:08:52 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/13 20:13:21 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	Harl::complain(std::string level)
 	void	(Harl::*fPointers[4])(void) \
 	= {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	
-	// for (int i = 0; levels[i] != level && i < 4; i++);
 	while (i < 4 && levels[i] != level)
 		i++;
-	i = i % 4;
 	switch (i)
 	{
 		case 0:
