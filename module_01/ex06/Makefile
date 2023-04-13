@@ -6,7 +6,7 @@ FLAGS += -Wall -Werror -Wextra
 FLAGS += -g3
 FLAGS += -I$(INCLUDES)
 
-BINARY = harl
+BINARY = harlFilter
 
 SOURCE_DIR = ./
 SOURCES_FILES =	main.cpp Harl.cpp
