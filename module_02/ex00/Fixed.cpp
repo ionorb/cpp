@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:28:01 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/14 00:53:32 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/14 17:22:01 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,35 @@
 Fixed::Fixed(void)
 {
 	std::cout << "Default constructor called\n";
-	fixed_num = 0;
+	this->fixed_num = 0;
 }
 
 Fixed::Fixed(const Fixed& fixed)
 {
 	std::cout << "Copy constructor called\n";
-	fixed_num = fixed.fixed_num;
+	*this = fixed;
 }
 
 Fixed& Fixed::operator=(const Fixed& fixed)
 {
-	fixed_num = fixed.fixed_num;
 	std::cout << "Copy assignment operator called\n";
+	this->fixed_num = fixed.getRawBits();
 	return *this;
 }
 
 Fixed::~Fixed(void)
 {
 	std::cout << "Destructor called\n";
-	fixed_num = 0;
 }
 
 int		Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called\n";
-	return (fixed_num);
+	return (this->fixed_num);
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	fixed_num = raw;
+	std::cout << "setRawBits member function called\n";
+	this->fixed_num = raw;
 }
