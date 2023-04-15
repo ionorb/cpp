@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:28:05 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/14 22:22:12 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/15 21:17:45 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,10 @@ Fixed			operator + (const Fixed& left, const Fixed& right);
 Fixed			operator - (const Fixed& left, const Fixed& right);
 Fixed			operator * (const Fixed& left, const Fixed& right);
 Fixed			operator / (const Fixed& left, const Fixed& right);
+
+Fixed			operator ++ (Fixed& fixed);
+Fixed			operator -- (Fixed& fixed);
+Fixed			operator ++ (Fixed& fixed, int);
+Fixed			operator -- (Fixed& fixed, int);
 
 #endif

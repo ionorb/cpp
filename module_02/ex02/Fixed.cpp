@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:28:01 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/14 22:25:43 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/15 21:16:59 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ Fixed			operator + (const Fixed& left, const Fixed& right)
 Fixed			operator - (const Fixed& left, const Fixed& right)
 {
 	Fixed	sum;
-	
+
 	sum.setRawBits(left.getRawBits() - right.getRawBits());
 	return (sum);
 	
@@ -144,19 +144,48 @@ Fixed			operator - (const Fixed& left, const Fixed& right)
 
 Fixed			operator * (const Fixed& left, const Fixed& right)
 {
-	Fixed	product;
-
-	product.setRawBits(left.getRawBits() * right.getRawBits());
+	Fixed	product(left.toFloat() * right.toFloat());
 	return (product);
 }
 
 Fixed			operator / (const Fixed& left, const Fixed& right)
 {
-	Fixed	product;
+	Fixed	product(left.toFloat() / right.toFloat());
 
-	product.setRawBits(left.getRawBits() / right.getRawBits());
 	return (product);
 	
+}
+
+
+//INCREMENT / DECREMENT
+Fixed	operator ++ (Fixed& fixed)
+{
+	fixed.setRawBits(fixed.getRawBits() + 1);
+	Fixed F(fixed);
+	return F;
+}
+
+Fixed	operator -- (Fixed& fixed)
+{
+	fixed.setRawBits(fixed.getRawBits() - 1);
+	Fixed F(fixed);
+	return F;
+}
+
+Fixed	operator ++ (Fixed& fixed, int)
+{
+	Fixed	F(fixed);
+
+	fixed.setRawBits(fixed.getRawBits() + 1);
+	return F;
+}
+
+Fixed	operator -- (Fixed& fixed, int)
+{
+	Fixed	F(fixed);
+
+	fixed.setRawBits(fixed.getRawBits() - 1);
+	return F;
 }
 
 
