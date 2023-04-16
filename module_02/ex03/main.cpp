@@ -1,61 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   stupid.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 20:27:17 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/15 21:21:59 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:28:37 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
-// int main( void )
-// {
-// 	Fixed big(69.699f);;
-// 	Fixed small(42.429f);
-// 	Fixed sum;
-// 	// Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-
-// 	// std::cout << a << std::endl;
-// 	// std::cout << ++a << std::endl;
-// 	// std::cout << a << std::endl;
-// 	// std::cout << a++ << std::endl;
-// 	// std::cout << a << std::endl;
-
-// 	// std::cout << b << std::endl;
-
-// 	// std::cout << Fixed::max( a, b ) << std::endl;
-// 	sum = small + big;
-// 	std:: cout << big << " + " << small << " = " << sum << std::endl;
-// 	sum = small - big;
-// 	std:: cout << small << " - " << big << " = " << sum << std::endl;
-// 	sum = small * big;
-// 	std:: cout << big << " * " << small << " = " << sum << std::endl;
-// 	sum = small / big;
-// 	std:: cout << big << " / " << small << " = " << sum << std::endl;
-// 	std:: cout << big.max(big, small) << "\n";
-// 	std:: cout << big.max(small, big) << "\n";
-// 	std:: cout << small.max(big, small) << "\n";
-// 	std:: cout << small.max(small, big) << "\n";
-// 	return (0);
-// }
+#include "Point.hpp"
 
 int main( void ) 
 {
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	Point	a(1, 3);
+	Point	b(4, 6);
+	Point	c(6, 2);
+	Point	p[3] = {Point(1, 3), Point(4, 6), Point(6, 2)};
 
-	std::cout << "a: " << a << std::endl;
-	std::cout << "a: " << ++a << std::endl;
-	std::cout << "a: " << a << std::endl;
-	std::cout << "a: " << a++ << std::endl << std::endl;
-	std::cout << "a: " << a << std::endl;
-
-	std::cout << "b: " << b << std::endl;
-	std::cout << "max: " << Fixed::max( a, b ) << std::endl;
-	std::cout << "min: " << Fixed::min( a, b ) << std::endl;
+	for (int i = 0; i < 3; i++)
+	{
+		std::cout << "Point: (" << p[i].getx() << ", " << p[i].gety() << ")";
+		if (bsp(a, b, c, p[i]))
+			std::cout << " is in the triangle\n";
+		else
+			std::cout << " is NOT in the triangle\n";
+	}
 	return 0;
 }
