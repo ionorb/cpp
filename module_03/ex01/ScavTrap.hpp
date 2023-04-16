@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:46:57 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/16 21:07:54 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:18:47 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class ScavTrap : public ClapTrap
 		~ScavTrap(void);
 		ScavTrap&	operator = (const ScavTrap& scav);
 		void	guardGate();
+		void	attack(const std::string& target);
 };
 
 

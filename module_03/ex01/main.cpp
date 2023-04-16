@@ -6,11 +6,12 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:33:38 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/16 20:23:15 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:18:15 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 void	conflict(ClapTrap& attacker, ClapTrap& target)
 {
@@ -22,6 +23,7 @@ int	main()
 {
 	ClapTrap	bobby("bobby");
 	ClapTrap	jeff("jeff");
+	ScavTrap	scavy("scavy");
 	
 	conflict(bobby, jeff);
 	for (int i = 0; i < 10; i++)
@@ -31,5 +33,7 @@ int	main()
 		jeff.takeDamage(2);
 		bobby.takeDamage(2);
 	}
+	scavy.guardGate();
+	scavy.attack("bbanana");
 	return 0;
 }
