@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:46:41 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/16 21:18:58 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:23:48 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->hp = 100;
 	this->energy = 50;
 	this->damage = 20;
-	std::cout << "scav Trap Created\n";
+	std::cout << "Scav Trap " << this->name << " Created\n";
 }
 
 ScavTrap::ScavTrap(const ScavTrap& scav) : ClapTrap(scav.name)
@@ -29,7 +29,7 @@ ScavTrap::ScavTrap(const ScavTrap& scav) : ClapTrap(scav.name)
 
 ScavTrap::~ScavTrap(void)
 {
-	std::cout << "scav Trap Destroyed\n";
+	std::cout << "Scav Trap " << this->name << " Destroyed\n";
 }
 
 ScavTrap&	ScavTrap::operator = (const ScavTrap& scav)

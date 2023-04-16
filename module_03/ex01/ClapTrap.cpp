@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:48:05 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/16 20:57:28 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:23:39 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ ClapTrap::ClapTrap(std::string name)
 	this->hp = 10;
 	this->energy = 10;
 	this->damage = 0;
-	std::cout << "Clap Trap Created\n";
+	std::cout << "Clap Trap " << this->name << " Created\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& clap)
@@ -29,7 +29,7 @@ ClapTrap::ClapTrap(const ClapTrap& clap)
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "Clap Trap Destroyed\n";
+	std::cout << "Clap Trap " << this->name << " Destroyed\n";
 }
 
 ClapTrap&	ClapTrap::operator = (const ClapTrap& clap)
