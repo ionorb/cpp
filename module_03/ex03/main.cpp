@@ -6,13 +6,14 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:33:38 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/16 21:38:54 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/17 18:41:00 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 void	conflict(ClapTrap& attacker, ClapTrap& target)
 {
@@ -22,22 +23,13 @@ void	conflict(ClapTrap& attacker, ClapTrap& target)
 
 int	main()
 {
-	ClapTrap	bobby("bobby");
-	ClapTrap	jeff("jeff");
-	ScavTrap	scavy("scavy");
-	FragTrap	fraggy("fraggy");
-	
-	conflict(bobby, jeff);
+	DiamondTrap	dia("dia");
+
 	for (int i = 0; i < 10; i++)
-		bobby.beRepaired(1);
-	for (int i = 0; i < 10; i++)
-	{
-		jeff.takeDamage(2);
-		bobby.takeDamage(2);
-	}
-	scavy.guardGate();
-	scavy.attack("bbanana");
-	fraggy.attack("nothing");
-	fraggy.highFivesGuys();
+		dia.beRepaired(1);
+	dia.attack("booy");
+	for (int i = 0; i < 11; i++)
+		dia.takeDamage(10);
+	dia.attack("boo");
 	return 0;
 }
