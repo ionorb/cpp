@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 19:48:05 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/16 21:23:39 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:07:04 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ ClapTrap&	ClapTrap::operator = (const ClapTrap& clap)
 void	ClapTrap::attack(const std::string& target)
 {
 	if (this->hp <= 0)
-		std::cout << this->name << " cannot attack while dead!\n";
+		std::cout << "[Clap Trap] " << this->name << " cannot attack while dead!\n";
 	else if (this->energy <= 0)
 		std::cout << this->name << " has no energy to attack!\n";
 	else
 	{
-		std::cout << this->name << " attacks " << target \
+		std::cout << "[Clap Trap] " << this->name << " attacks " << target \
 		<< ", causing " << this->damage << " points of damage!\n";
 		this->energy -= 1;
 	}
