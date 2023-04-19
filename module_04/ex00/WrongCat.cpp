@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:45:15 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/19 18:06:14 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/04/19 18:13:09 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
-Cat::Cat(void)
+WrongCat::WrongCat(void)
 {
-	std::cout << "Cat object created\n";
-	this->type = "Cat";
+	std::cout << "WrongCat object created\n";
+	this->type = "WrongCat";
 }
 
-Cat::~Cat(void)
+WrongCat::~WrongCat(void)
 {
-	std::cout << "Cat object destroyed\n";
+	std::cout << "WrongCat object destroyed\n";
 }
 
-Cat::Cat(const Cat& copy)
+WrongCat::WrongCat(const WrongCat& copy)
 {
-	std::cout << "Cat object copied\n";
+	std::cout << "WrongCat object copied\n";
 	*this = copy;
 }
 
-Cat&	Cat::operator = (const Cat& copy)
+WrongCat&	WrongCat::operator = (const WrongCat& copy)
 {
-	std::cout << "Cat object assigned\n";
+	std::cout << "WrongCat object assigned\n";
 	if (this != &copy)
 		this->type = copy.type;
 	return (*this);
 }
 
-void	Cat::makeSound(void) const
+void	WrongCat::makeSound(void) const
 {
 	std::cout << "*meeowww*" << std::endl;
 }

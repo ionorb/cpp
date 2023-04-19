@@ -6,7 +6,7 @@
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:45:24 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/19 15:17:36 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/04/19 18:06:21 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,9 @@ Dog&	Dog::operator = (const Dog& copy)
 	if (this != &copy)
 		this->type = copy.type;
 	return (*this);
+}
+
+void	Dog::makeSound(void) const
+{
+	std::cout << "*BARK*" << std::endl;
 }

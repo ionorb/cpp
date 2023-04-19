@@ -9,7 +9,13 @@ FLAGS += -I$(INCLUDES)
 BINARY = animals
 
 SOURCE_DIR = ./
-SOURCES_FILES =	main.cpp Dog.cpp Cat.cpp Animal.cpp
+SOURCES_FILES =	main.cpp \
+				Dog.cpp \
+				Cat.cpp \
+				Animal.cpp \
+				WrongCat.cpp \
+				WrongAnimal.cpp
+
 SRCS = $(addprefix $(SOURCE_DIR), $(SOURCES_FILES))
 
 OBJ_DIR = objs/
