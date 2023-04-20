@@ -6,7 +6,7 @@
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:36:47 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/19 19:22:42 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/04/20 21:03:39 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ class Dog : public Animal
 		Dog(const Dog& other);
 		Dog&	operator = (const Dog& other);
 		void	makeSound(void) const;
-
+		void	printBrain(void);
+		void	setBrain(std::string idea);
 	private:
 		Brain*	brain;
 };

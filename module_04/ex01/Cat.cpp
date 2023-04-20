@@ -6,7 +6,7 @@
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:45:15 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/19 19:08:11 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/04/20 22:36:35 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,16 @@ Cat&	Cat::operator = (const Cat& copy)
 void	Cat::makeSound(void) const
 {
 	std::cout << "*meeowww*" << std::endl;
+}
+
+void	Cat::printBrain(void)
+{
+	for (int i = 0; i < 99; i++)
+		std::cout << this->brain->getIdeas()[i] << ", ";
+	std::cout << this->brain->getIdeas()[99] << "\n";
+}
+
+void	Cat::setBrain(std::string idea)
+{
+	this->brain->setIdeas(idea);
 }

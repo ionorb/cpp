@@ -6,7 +6,7 @@
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:13:45 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/19 19:12:46 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/04/20 22:40:10 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
 	{
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
-		delete j;//should not create a leak
+		delete j; //should not create a leak
 		delete i;
 	}
 	std::cout << "\n----------------\n";
@@ -41,6 +41,20 @@ int main()
 	std::cout << "\n----------------\n";
 	std::cout << "\nDEEP COPY TEST:\n\n";
 	{
+		Cat		a;
+		Cat		b;
+		Cat		c;
+
+		std::cout << "\nA brain:\n";
+		a.setBrain("boop");
+		a.printBrain();
+		std::cout << "\nB brain:\n";
+		b = a;
+		b.printBrain();
+		std::cout << "\nC brain:\n";
+		c = Cat(a);
+		// c.printBrain();
+		std::cout <<"hello\n";
 	}
 	std::cout << "\n----------------\n";
 	std::cout << "\nGOOD ANIMALS:\n\n";
