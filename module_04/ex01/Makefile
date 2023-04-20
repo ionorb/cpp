@@ -14,7 +14,8 @@ SOURCES_FILES =	main.cpp \
 				Cat.cpp \
 				Animal.cpp \
 				WrongCat.cpp \
-				WrongAnimal.cpp
+				WrongAnimal.cpp \
+				Brain.cpp
 
 SRCS = $(addprefix $(SOURCE_DIR), $(SOURCES_FILES))
 

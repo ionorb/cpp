@@ -1,45 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/19 14:45:24 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/19 19:08:14 by myaccount        ###   ########.fr       */
+/*   Created: 2023/04/19 18:59:38 by myaccount         #+#    #+#             */
+/*   Updated: 2023/04/19 19:05:56 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Brain.hpp"
 
-Dog::Dog(void)
+Brain::Brain()
 {
-	std::cout << "Dog object created\n";
-	this->type = "Dog";
-	this->brain = new Brain;
+	std::cout << "brain created\n";
 }
 
-Dog::~Dog(void)
+Brain::~Brain()
 {
-	delete this->brain;
-	std::cout << "Dog object destroyed\n";
+	std::cout << "brain destroyed\n";
 }
 
-Dog::Dog(const Dog& copy)
+Brain::Brain(const Brain& copy)
 {
-	std::cout << "Dog object copied\n";
+	std::cout << "brain is being copied\n";
 	*this = copy;
 }
 
-Dog&	Dog::operator = (const Dog& copy)
+Brain&	Brain::operator = (const Brain& copy)
 {
-	std::cout << "Dog object assigned\n";
+	std::cout << "brain is being assigned\n";
 	if (this != &copy)
-		this->type = copy.type;
+	{
+		for (int i = 0; i < 100; i++)
+			this->ideas[i] = copy.ideas[i];
+	}
 	return (*this);
-}
-
-void	Dog::makeSound(void) const
-{
-	std::cout << "*BARK*" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:45:15 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/19 18:38:49 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/04/19 19:08:11 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 Cat::Cat(void)
 {
 	std::cout << "Cat object created\n";
-	this->brain = new Brain;
 	this->type = "Cat";
+	this->brain = new Brain;
 }
 
 Cat::~Cat(void)
 {
-	std::cout << "Cat object destroyed\n";
 	delete this->brain;
+	std::cout << "Cat object destroyed\n";
 }
 
 Cat::Cat(const Cat& copy)
