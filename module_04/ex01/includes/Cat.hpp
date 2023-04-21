@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:36:47 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/21 16:43:57 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/21 17:16:17 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class Cat : public Animal
 {
 	public:
 		Cat(void);
-		~Cat(void);
+		virtual ~Cat(void);
 		Cat(const Cat& other);
 		Cat&	operator = (const Cat& other);
 		void	makeSound(void) const;
@@ -27,7 +27,6 @@ class Cat : public Animal
 		void	setBrain(std::string idea);
 	private:
 		Brain*	brain;
-		
 };
 
 #endif
