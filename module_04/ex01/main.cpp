@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:13:45 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/21 16:33:09 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/21 16:57:50 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@
 int main()
 {
 	std::cout << "\n--------TESTS--------\n";
-	std::cout << "\nTEST FROM SUBJECT:\n\n";
+	std::cout << "\nTEST FROM SUBJECT:\n";
 	{
+		std::cout << "\n//j creation:\n";
 		const Animal* j = new Dog();
+		std::cout << "\n//i creation:\n";
 		const Animal* i = new Cat();
+		std::cout << "\n//j destruction:\n";
 		delete j; //should not create a leak
+		std::cout << "\n//i destruction:\n";
 		delete i;
 	}
 	std::cout << "\n----------------\n";
@@ -41,15 +45,19 @@ int main()
 	std::cout << "\n----------------\n";
 	std::cout << "\nDEEP COPY TEST:\n\n";
 	{
+		std::cout << "\n//a creation:\n";
 		Cat		a;
+		std::cout << "\n//b creation:\n";
 		Cat		b;
+		std::cout << "\n//c creation:\n";
 		Cat		c = a;
 
 		std::cout << "\nA brain:\n";
 		a.setBrain("boop");
 		a.printBrain();
-		std::cout << "\nB brain:\n";
+		std::cout << "\n//a assigned to b:\n";
 		b = a;
+		std::cout << "\nB brain:\n";
 		b.printBrain();
 		std::cout << "\nC brain:\n";
 		c.printBrain();

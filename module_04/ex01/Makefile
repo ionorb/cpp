@@ -1,10 +1,11 @@
 # VARIABLES #
 COMPILER = c++
-INCLUDES = ./
+INC_DIR = includes/
+INCLUDES = $(INC_DIR)/*.hpp
 FLAGS = -std=c++98
 FLAGS += -Wall -Werror -Wextra
 FLAGS += -g3
-FLAGS += -I$(INCLUDES)
+FLAGS += -I$(INC_DIR)
 
 BINARY = animals
 
@@ -26,7 +27,7 @@ OBJS = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 # RULES #
 all: $(BINARY)
 
-$(BINARY): $(OBJS)
+$(BINARY): $(OBJS) $(INCLUDES)
 	$(COMPILER) $(FLAGS) $(SRCS) -o $(BINARY)
 
 $(OBJ_DIR)%.o: $(SOURCE_DIR)%.cpp
