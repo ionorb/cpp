@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:45:15 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/19 18:13:09 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/04/21 14:43:02 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ WrongCat::~WrongCat(void)
 	std::cout << "WrongCat object destroyed\n";
 }
 
-WrongCat::WrongCat(const WrongCat& copy)
+WrongCat::WrongCat(const WrongCat& copy) : WrongAnimal()
 {
 	std::cout << "WrongCat object copied\n";
 	*this = copy;

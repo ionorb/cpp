@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:45:23 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/19 18:12:56 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/04/21 14:51:50 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

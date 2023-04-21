@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:45:15 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/20 22:36:35 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/04/21 16:33:37 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,28 @@ Cat::~Cat(void)
 	std::cout << "Cat object destroyed\n";
 }
 
-Cat::Cat(const Cat& copy)
+Cat::Cat(const Cat& copy) : Animal()
 {
 	std::cout << "Cat object copied\n";
-	*this = copy;
+	this->type = "Cat";
+	this->brain = new Brain;
+	*this->brain = *copy.brain;
 }
 
 Cat&	Cat::operator = (const Cat& copy)
 {
 	std::cout << "Cat object assigned\n";
 	if (this != &copy)
+	{
 		this->type = copy.type;
+		*this->brain = *copy.brain;
+	}
 	return (*this);
 }
 
 void	Cat::makeSound(void) const
 {
-	std::cout << "*meeowww*" << std::endl;
+	std::cout << this->type << ": *meeowww*" << std::endl;
 }
 
 void	Cat::printBrain(void)

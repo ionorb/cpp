@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:13:45 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/20 22:40:10 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/04/21 16:33:09 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main()
 	{
 		Cat		a;
 		Cat		b;
-		Cat		c;
+		Cat		c = a;
 
 		std::cout << "\nA brain:\n";
 		a.setBrain("boop");
@@ -52,9 +52,19 @@ int main()
 		b = a;
 		b.printBrain();
 		std::cout << "\nC brain:\n";
-		c = Cat(a);
-		// c.printBrain();
-		std::cout <<"hello\n";
+		c.printBrain();
+		c.setBrain("c brain");
+		b.setBrain("b brain");
+		a.setBrain("a brain");
+		std::cout << "\nA brain:\n";
+		a.printBrain();
+		std::cout << "\nB brain:\n";
+		b.printBrain();
+		std::cout << "\nC brain:\n";
+		c.printBrain();
+		c.makeSound();
+		a.makeSound();
+		b.makeSound();
 	}
 	std::cout << "\n----------------\n";
 	std::cout << "\nGOOD ANIMALS:\n\n";
