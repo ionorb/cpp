@@ -9,7 +9,7 @@ FLAGS += -I$(INC_DIR)
 
 BINARY = animals
 
-SOURCE_DIR = ./
+SOURCE_DIR = sources/
 SOURCES_FILES =	main.cpp \
 				Dog.cpp \
 				Cat.cpp \
