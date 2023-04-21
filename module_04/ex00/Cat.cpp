@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 14:45:15 by myaccount         #+#    #+#             */
-/*   Updated: 2023/04/19 18:06:14 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/04/21 14:23:42 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Cat::~Cat(void)
 	std::cout << "Cat object destroyed\n";
 }
 
-Cat::Cat(const Cat& copy)
+Cat::Cat(const Cat& copy) : Animal()
 {
 	std::cout << "Cat object copied\n";
 	*this = copy;
