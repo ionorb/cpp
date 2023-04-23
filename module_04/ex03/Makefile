@@ -7,7 +7,7 @@ FLAGS += -Wall -Werror -Wextra
 FLAGS += -g3
 FLAGS += -I$(INC_DIR)
 
-BINARY = animals
+BINARY = materia
 
 SOURCE_DIR = sources/
 SOURCES_FILES =	main.cpp \
