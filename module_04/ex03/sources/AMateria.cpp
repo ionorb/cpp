@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 17:18:12 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/23 13:20:22 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 19:11:45 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 AMateria::AMateria()
 {
-	std::cout << "AMateria Constructor\n";
+	// std::cout << "AMateria Constructor\n";
 }
 
 AMateria::AMateria(std::string const & type)
 {
 	std::cout << "AMateria construct with type\n";
 	this->type = type; //hmm
+	(void)type;
 }
 
 AMateria::~AMateria()

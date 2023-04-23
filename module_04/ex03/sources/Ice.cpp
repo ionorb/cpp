@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:31:21 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/23 16:58:38 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 19:15:39 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ Ice::Ice()
 
 Ice::Ice(std::string const & type)
 {
-	std::cout << "Ice construct with type\n";
+	(void)type;
+	// std::cout << "Ice construct with type\n";
 	this->type = type; //hmm
 }
 
@@ -32,15 +33,17 @@ Ice::~Ice()
 Ice::Ice(const Ice& copy) : AMateria(copy.type)
 {
 	std::cout << "Ice COPY Constructor\n";
-	*this = copy;
+	// *this = copy;
+	(void)copy;
 	// this->type = copy.type;
 }
 
 Ice&	Ice::operator = (const Ice& copy)
 {
-	std::cout << "Ice Assignment\n";
-	if (this != &copy)
-		*this = *copy.clone();
+	// std::cout << "Ice Assignment\n";
+	// if (this != &copy)
+	// 	*this = *copy.clone();
+	(void)copy;
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:49:21 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/23 17:04:55 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 19:48:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ Character::Character(std::string const& name) : name(name)
 	std::cout << "Character construct with name\n";
 	for (int i = 0; i < 4; i++)
 		this->inventory[i] = NULL;
-	// num_items = 0;
 }
 
 Character::~Character()
@@ -39,11 +38,9 @@ Character::Character(const Character& copy) : name(copy.name)
 {
 	std::cout << "Character COPY Constructor\n";
 	for (int i = 0; i < 4; i++)
-	{
-		delete this->inventory[i];
-		this->inventory[i] = copy.inventory[i];
-	}
-	// this->num_items = copy.num_items;
+		this->inventory[i] = NULL;
+	for (int i = 0; i < 4; i++)
+		this->inventory[i] = copy.inventory[i]->clone();
 }
 
 Character&	Character::operator = (const Character& copy)
@@ -54,9 +51,8 @@ Character&	Character::operator = (const Character& copy)
 		for (int i = 0; i < 4; i++)
 		{
 			delete this->inventory[i];
-			this->inventory[i] = copy.inventory[i];
+			this->inventory[i] = copy.inventory[i]->clone();
 		}
-		// this->num_items = copy.num_items;
 	}
 	return (*this);
 }
@@ -83,7 +79,7 @@ void	Character::equip(AMateria* m)
 		std::cout << m->getType() << " equiped\n";
 	}
 	else
-		std::cout << m->getType() << " inventory full!\n";
+		std::cout << m->getType() << " inventory full!\n", delete m;
 }
 
 void	Character::unequip(int idx)
