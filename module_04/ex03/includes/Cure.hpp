@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:45:31 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/22 20:26:00 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 13:26:35 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define CURE_HPP
 #include <iostream>
 #include "Character.hpp"
+#include "AMateria.hpp"
 
-class Cure
+class Cure : public AMateria
 {
-	protected:
-		std::string	type;
+	// protected:
+	// 	std::string	type;
 	public:
 		Cure();
 		Cure(std::string const & type);

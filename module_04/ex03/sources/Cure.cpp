@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:46:00 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/22 18:46:48 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 13:28:45 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 Cure::Cure()
 {
 	std::cout << "Cure Constructor\n";
+	this->type = type; //hmm
 }
 
 Cure::Cure(std::string const & type)
@@ -43,9 +44,9 @@ Cure&	Cure::operator = (const Cure& copy)
 	return (*this);
 }
 
-std::string const&	Cure::getType() const
+Cure*	Cure::clone() const
 {
-	return (this->type);
+	return (new Cure("cure"));
 }
 
 void	Cure::use(ICharacter& target)

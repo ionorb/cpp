@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:47:27 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/22 20:28:36 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 15:59:46 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ class Character : public ICharacter
 		virtual ~Character();
 		Character(const Character& copy);
 		Character&	operator = (const Character& copy);
-		virtual std::string const& getName() const = 0;
-		virtual void equip(AMateria* m) = 0;
-		virtual void unequip(int idx) = 0;
-		virtual void use(int idx, ICharacter& target) = 0;
+		virtual std::string const& getName() const;
+		virtual void equip(AMateria* m);
+		virtual void unequip(int idx);
+		virtual void use(int idx, ICharacter& target);
 	private:
-		int			num_items;
+		// int	 		num_items;
 		AMateria	*inventory[4];
 		std::string const name;
 		// List		*floor;

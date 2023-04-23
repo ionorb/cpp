@@ -6,16 +6,17 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:31:21 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/22 18:44:36 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 13:29:05 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 
-Ice::Ice()
-{
-	std::cout << "Ice Constructor\n";
-}
+// Ice::Ice()
+// {
+// 	std::cout << "Ice Constructor\n";
+// 	this->type = type; //hmm
+// }
 
 Ice::Ice(std::string const & type)
 {
@@ -43,9 +44,9 @@ Ice&	Ice::operator = (const Ice& copy)
 	return (*this);
 }
 
-std::string const&	Ice::getType() const
+Ice*	Ice::clone() const
 {
-	return (this->type);
+	return (new Ice("ice"));
 }
 
 void	Ice::use(ICharacter& target)
