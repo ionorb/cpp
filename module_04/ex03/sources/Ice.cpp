@@ -6,17 +6,17 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:31:21 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/23 13:29:05 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 16:58:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 
-// Ice::Ice()
-// {
-// 	std::cout << "Ice Constructor\n";
-// 	this->type = type; //hmm
-// }
+Ice::Ice()
+{
+	std::cout << "Ice Constructor\n";
+	this->type = "ice"; //hmm
+}
 
 Ice::Ice(std::string const & type)
 {
@@ -29,7 +29,7 @@ Ice::~Ice()
 	std::cout << "Ice Destructor\n";
 }
 
-Ice::Ice(const Ice& copy)
+Ice::Ice(const Ice& copy) : AMateria(copy.type)
 {
 	std::cout << "Ice COPY Constructor\n";
 	*this = copy;

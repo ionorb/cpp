@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:46:00 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/23 13:28:45 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 17:05:28 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Cure::Cure()
 {
 	std::cout << "Cure Constructor\n";
-	this->type = type; //hmm
+	this->type = "cure"; //hmm
 }
 
 Cure::Cure(std::string const & type)
@@ -29,7 +29,7 @@ Cure::~Cure()
 	std::cout << "Cure Destructor\n";
 }
 
-Cure::Cure(const Cure& copy)
+Cure::Cure(const Cure& copy) : AMateria(copy.type)
 {
 	std::cout << "Cure COPY Constructor\n";
 	*this = copy;

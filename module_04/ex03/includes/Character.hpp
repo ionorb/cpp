@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:47:27 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/23 15:59:46 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 16:50:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CHARACTER_HPP
 #include <iostream>
 #include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {

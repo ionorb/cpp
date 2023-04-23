@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 13:29:20 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/23 15:52:27 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 16:53:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class MateriaSource : public IMateriaSource
 	public:
 		MateriaSource();
 		MateriaSource(const MateriaSource& copy);
-		MateriaSource&	MateriaSource::operator = (const MateriaSource& copy);
+		MateriaSource&	operator = (const MateriaSource& copy);
 		virtual ~MateriaSource();
 		virtual void learnMateria(AMateria* ptr);
 		virtual AMateria* createMateria(std::string const & type);

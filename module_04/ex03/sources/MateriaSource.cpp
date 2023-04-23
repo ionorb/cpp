@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 13:29:14 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/23 16:06:03 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 17:02:41 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ AMateria*	MateriaSource::createMateria(std::string const& type)
 	{
 		if (this->learned[i]->getType() == type)
 			return (this->learned[i]->clone());
+		i++;
 	}
+	std::cout << "materia " << type << " not found\n";
 	return (0);
 }

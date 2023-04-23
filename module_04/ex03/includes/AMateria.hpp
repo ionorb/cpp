@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 17:09:50 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/22 20:26:07 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 16:51:01 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define AMATERIA_HPP
 #include <iostream>
 #include "Character.hpp"
+
+class ICharacter;
 
 class AMateria
 {

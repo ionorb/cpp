@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 18:49:21 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/23 16:02:56 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/23 17:04:55 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ void	Character::equip(AMateria* m)
 {
 	int	i = 0;
 
+	if (!m)
+	{
+		std::cout << "error: invalid materia\n";
+		return ;
+	}
 	while (i < 4 && this->inventory[i])
 		i++;
 	if (i < 4 && !this->inventory[i])
@@ -97,7 +102,7 @@ void	Character::unequip(int idx)
 void	Character::use(int idx, ICharacter& target)
 {
 	if (idx < 4 && idx >= 0 && this->inventory[idx])
-		this->inventory[idx]->use(target);
+		(this->inventory[idx])->use(target);
 	else if (idx > 3 || idx < 0)
 		std::cout << "INVALID INDEX\n";
 	else
