@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:10:39 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/24 21:19:18 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/24 23:11:55 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define BUREAUCRAT_HPP
 #include <iostream>
 #include "GradeException.hpp"
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -27,7 +30,7 @@ class Bureaucrat
 	public:
 		Bureaucrat();
 		Bureaucrat(std::string name, int grade);
-		~Bureaucrat();
+		virtual ~Bureaucrat();
 		Bureaucrat(const Bureaucrat& copy);
 		Bureaucrat&		operator = (const Bureaucrat& copy);
 		void			upgrade();
@@ -35,6 +38,7 @@ class Bureaucrat
 		std::string		getName() const;
 		int				getGrade() const;
 		void			setGrade(int grade);
+		void			signForm(Form& form) const;
 };
 
 std::ostream&	operator << (std::ostream& out, const Bureaucrat& a);

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:21:47 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/24 21:12:49 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/24 23:20:00 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,15 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
 	std::cout << "Bureaucrat Constrctor with name and grade\n";
 	if (grade < this->_max_grade)
+	{
+		std::cout << "Error: bureaucrat construction out of bounds\n";
 		throw tooHigh;
+	}
 	if (grade > this->_min_grade)
+	{
+		std::cout << "Error: bureaucrat construction out of bounds\n";
 		throw tooLow;
+	}
 	this->_grade = grade;
 }
 
@@ -32,7 +38,7 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Bureaucrat Default Destructor\n";
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& copy)
+Bureaucrat::Bureaucrat(const Bureaucrat& copy) : _name(copy.getName())
 {
 	std::cout << "Bureaucrat Copy Constructor\n";
 	this->_grade = copy._grade;
@@ -80,4 +86,19 @@ void	Bureaucrat::downgrade(void)
 	if (this->_grade + 1 > this->_min_grade)
 		throw tooLow;
 	this->_grade += 1;
+}
+
+void	Bureaucrat::signForm(Form& form) const
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << this->_name << " signed " << form.getName() << "\n";
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << this->_name << "couldn't sign " << form.getName() \
+				  << " because " << e.what() << '\n';
+	}
+	
 }

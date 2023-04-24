@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:21:47 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/24 19:33:17 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/24 21:49:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,10 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Bureaucrat Default Destructor\n";
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& copy)
+Bureaucrat::Bureaucrat(const Bureaucrat& copy) : _name(copy.getName())
 {
 	std::cout << "Bureaucrat Copy Constructor\n";
 	this->_grade = copy._grade;
-
 }
 
 void	Bureaucrat::setGrade(int grade)
