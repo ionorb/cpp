@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:21:47 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/24 13:54:25 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/24 19:33:17 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,14 @@ Bureaucrat::Bureaucrat()
 	std::cout << "Bureaucrat Default Constrctor\n";
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade)
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-
+	std::cout << "Bureaucrat Constrctor with name and grade\n";
+	if (grade < this->_max_grade)
+		throw tooHigh;
+	if (grade > this->_min_grade)
+		throw tooLow;
+	this->_grade = grade;
 }
 
 Bureaucrat::~Bureaucrat()
@@ -40,6 +45,7 @@ Bureaucrat::~Bureaucrat()
 Bureaucrat::Bureaucrat(const Bureaucrat& copy)
 {
 	std::cout << "Bureaucrat Copy Constructor\n";
+	this->_grade = copy._grade;
 
 }
 
@@ -52,25 +58,23 @@ Bureaucrat&	Bureaucrat::operator = (const Bureaucrat& copy)
 {
 	std::cout << "Bureaucrat Assignment\n";
 	if (this != &copy)
-	{
-		
-	}
+		this->_grade = copy.getGrade();
 	return (*this);
 }
 
-int	Bureaucrat::getGrade()
+int	Bureaucrat::getGrade() const
 {
 	return (this->_grade);
 }
 
-std::string	Bureaucrat::getName()
+std::string	Bureaucrat::getName() const
 {
 	return (this->_name);
 }
 
 std::ostream&	operator << (std::ostream& out, const Bureaucrat& a)
 {
-	out << a.getName() << ", bureaucrat grade " << a.getGrade();
+	out << a.getName() << ", bureaucrat grade " << a.getGrade() << std::endl;
 	return (out);
 }
 

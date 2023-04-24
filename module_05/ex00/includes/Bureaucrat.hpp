@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:10:39 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/24 13:53:13 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/24 18:48:39 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ class Bureaucrat
 		Bureaucrat&		operator = (const Bureaucrat& copy);
 		void			upgrade();
 		void			downgrade();
-		std::string		getName();
-		int				getGrade();
+		std::string		getName() const;
+		int				getGrade() const;
 		void			setGrade(int grade);
 };
 

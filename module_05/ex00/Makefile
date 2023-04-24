@@ -7,7 +7,7 @@ FLAGS += -Wall -Werror -Wextra
 FLAGS += -g3
 FLAGS += -I$(INC_DIR)
 
-BINARY = materia
+BINARY = bureaucrat
 
 SOURCE_DIR = sources/
 SOURCES_FILES =	main.cpp \
