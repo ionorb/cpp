@@ -11,7 +11,9 @@ BINARY = bureaucrat
 
 SOURCE_DIR = sources/
 SOURCES_FILES =	main.cpp \
-				Bureaucrat.cpp
+				Bureaucrat.cpp \
+				Form.cpp \
+				GradeException.cpp
 
 SRCS = $(addprefix $(SOURCE_DIR), $(SOURCES_FILES))
 

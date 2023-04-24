@@ -6,21 +6,11 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:21:47 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/24 19:33:17 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/24 21:12:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-
-const char*	GradeTooHighException::what() const throw()
-{
-	return ("Grade Too High");
-}
-
-const char*	GradeTooLowException::what() const throw()
-{
-	return ("Grade Too Low");
-}
 
 Bureaucrat::Bureaucrat()
 {

@@ -6,26 +6,14 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:10:39 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/24 18:48:39 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/24 21:19:18 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 #include <iostream>
-#include <exception>
-
-class GradeTooHighException : public std::exception
-{
-	public:
-		virtual const char* what() const throw();
-};
-
-class GradeTooLowException : public std::exception
-{
-	public:
-		virtual const char* what() const throw();
-};
+#include "GradeException.hpp"
 
 class Bureaucrat
 {
