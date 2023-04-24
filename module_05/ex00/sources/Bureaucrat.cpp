@@ -1,0 +1,89 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/24 13:21:47 by codespace         #+#    #+#             */
+/*   Updated: 2023/04/24 13:54:25 by codespace        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Bureaucrat.hpp"
+
+const char*	GradeTooHighException::what() const throw()
+{
+	return ("Grade Too High");
+}
+
+const char*	GradeTooLowException::what() const throw()
+{
+	return ("Grade Too Low");
+}
+
+Bureaucrat::Bureaucrat()
+{
+	std::cout << "Bureaucrat Default Constrctor\n";
+}
+
+Bureaucrat::Bureaucrat(std::string name, int grade)
+{
+
+}
+
+Bureaucrat::~Bureaucrat()
+{
+	std::cout << "Bureaucrat Default Destructor\n";
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat& copy)
+{
+	std::cout << "Bureaucrat Copy Constructor\n";
+
+}
+
+void	Bureaucrat::setGrade(int grade)
+{
+	this->_grade = grade;
+}
+
+Bureaucrat&	Bureaucrat::operator = (const Bureaucrat& copy)
+{
+	std::cout << "Bureaucrat Assignment\n";
+	if (this != &copy)
+	{
+		
+	}
+	return (*this);
+}
+
+int	Bureaucrat::getGrade()
+{
+	return (this->_grade);
+}
+
+std::string	Bureaucrat::getName()
+{
+	return (this->_name);
+}
+
+std::ostream&	operator << (std::ostream& out, const Bureaucrat& a)
+{
+	out << a.getName() << ", bureaucrat grade " << a.getGrade();
+	return (out);
+}
+
+void	Bureaucrat::upgrade(void)
+{
+	if (this->_grade - 1 < this->_max_grade)
+		throw tooHigh;
+	this->_grade -= 1;
+}
+
+void	Bureaucrat::downgrade(void)
+{
+	if (this->_grade + 1 > this->_min_grade)
+		throw tooLow;
+	this->_grade += 1;
+}
