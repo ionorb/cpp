@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 21:21:27 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/24 23:18:02 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/25 09:25:34 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ Form&	Form::operator = (const Form& copy)
 
 std::ostream&	operator << (std::ostream& out, const Form& a)
 {
-	out << "Form:\nName: " << a.getName() \
+	out << a.getName() << ":" \
 		<< "\nSign Status: " << a.getSignStatus() \
 		<< "\nSign Grade: " << a.getSignGrade() \
 		<< "\nExec Grade: " << a.getExecGrade() << std::endl;
@@ -90,5 +90,4 @@ void	Form::beSigned(const Bureaucrat& signer)
 		throw tooLow;
 	else
 		this->_is_signed = true;
-	std::cout << "\n\njflkdjsJFlkd:FKDJFLJFD\n\n";
 }

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:21:47 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/24 23:20:00 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/25 09:05:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	Bureaucrat::signForm(Form& form) const
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << this->_name << "couldn't sign " << form.getName() \
+		std::cerr << this->_name << " couldn't sign " << form.getName() \
 				  << " because " << e.what() << '\n';
 	}
 	
