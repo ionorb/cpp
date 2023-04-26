@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 21:21:27 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/26 14:35:48 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/26 16:04:55 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ void	AForm::beSigned(const Bureaucrat& signer)
 
 void	AForm::execute(const Bureaucrat& executer) const
 {
-	if (this->_exec_grade < executer.getGrade())
-		throw tooLow;
-	else if (this->_is_signed == false)
+	if (this->_is_signed == false)
 		throw notSigned;
+	else if (this->_exec_grade < executer.getGrade())
+		throw tooLow;
 	else
 		this->action();
 }

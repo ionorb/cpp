@@ -6,18 +6,11 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 21:58:06 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/26 14:28:25 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/26 16:00:37 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
-#include <fstream>
-
-// ShrubberyCreationForm::ShrubberyCreationForm() : _sign_grade(1), _exec_grade(1)
-// {
-// 	std::cout << "ShrubberyCreationForm Default Constrctor\n";
-// 	this->_is_signed = false;
-// }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) \
 : AForm("ShrubberyCreationForm", target, 145, 137) //_name(name), _sign_grade(sign_grade), _exec_grade(exec_grade)

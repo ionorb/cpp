@@ -6,13 +6,15 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:38:35 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/26 14:41:08 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/26 16:07:40 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int	main()
 {
@@ -21,9 +23,11 @@ int	main()
 		std::cout << "\n-------CONSTRUCTION-------\n";
 		Bureaucrat				cannot_sign("cannot sign", 146);
 		Bureaucrat				cannot_exec("cannot exec", 138);
-		Bureaucrat				can_everything("can everything", 136);
-		ShrubberyCreationForm	signed_shrubbery("house");
-		ShrubberyCreationForm	unsigned_shrubbery("home");
+		Bureaucrat				can_everything("can everything", 24);
+		ShrubberyCreationForm	signed_shrubbery("signed");
+		ShrubberyCreationForm	unsigned_shrubbery("unsigned");
+		RobotomyRequestForm		robotomy("bob");
+		PresidentialPardonForm	pardon("she");
 		std::cout << "--------------------------\n";
 
 		std::cout << "\n-------BUREAUCRATS--------\n";
@@ -48,6 +52,8 @@ int	main()
 		// signed_shrubbery.beSigned(cannot_exec);
 		cannot_sign.signForm(signed_shrubbery);
 		cannot_exec.signForm(signed_shrubbery);
+		can_everything.signForm(robotomy);
+		can_everything.signForm(pardon);
 
 		std::cout << "\nSIGNED FORM:\n" \
 				  << signed_shrubbery << std::endl;
@@ -63,6 +69,8 @@ int	main()
 		can_everything.executeForm(signed_shrubbery);
 		cannot_exec.executeForm(unsigned_shrubbery);
 		can_everything.executeForm(unsigned_shrubbery);
+		can_everything.executeForm(robotomy);
+		can_everything.executeForm(pardon);
 		std::cout << "--------------------------\n";
 
 		std::cout << "\n---------DESTRUCTION----------\n";
