@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:10:39 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/25 09:36:40 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/26 11:11:23 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ class Bureaucrat
 		int				getGrade() const;
 		void			setGrade(int grade);
 		void			signForm(AForm& form) const;
+		void			executeForm(const AForm& form) const;
 };
 
 std::ostream&	operator << (std::ostream& out, const Bureaucrat& a);

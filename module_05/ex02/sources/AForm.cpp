@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 21:21:27 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/25 09:35:07 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/26 14:35:48 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,22 @@ AForm::AForm() : _sign_grade(1), _exec_grade(1)
 	this->_is_signed = false;
 }
 
-AForm::AForm(std::string name, int sign_grade, int exec_grade) \
-: _name(name), _sign_grade(sign_grade), _exec_grade(exec_grade)
+AForm::AForm(std::string name, std::string target, int sign_grade, int exec_grade) \
+: _name(name), _sign_grade(sign_grade), _exec_grade(exec_grade), _target(target)
 {
-	std::cout << "AForm Constrctor with name\n";
+	(void)target;
+	std::cout << "AForm Constrctor with name ";
 	if (this->_sign_grade > _min_grade || this->_exec_grade > _min_grade)
 	{
-		std::cout << "Error: Aform construction out of bounds\n";
+		std::cout << "\nError: Aform construction out of bounds\n";
 		throw tooLow;
 	}
 	if (this->_sign_grade < _max_grade || this->_exec_grade < _max_grade)
 	{
-		std::cout << "Error: Aform construction out of bounds\n";
+		std::cout << "\nError: Aform construction out of bounds\n";
 		throw tooHigh;
 	}
+	std::cout << "(" << this->_name << ")\n";
 	this->_is_signed = false;
 }
 
@@ -41,7 +43,8 @@ AForm::~AForm()
 }
 
 AForm::AForm(const AForm& copy) \
-: _name(getName()), _sign_grade(getSignGrade()), _exec_grade(getExecGrade())
+: _name(copy.getName()), _sign_grade(copy.getSignGrade()), \
+_exec_grade(getExecGrade()), _target(copy.getTarget())
 {
 	std::cout << "AForm Copy Constructor\n";
 	this->_is_signed = copy.getSignStatus();
@@ -60,7 +63,8 @@ std::ostream&	operator << (std::ostream& out, const AForm& a)
 	out << a.getName() << ":" \
 		<< "\nSign Status: " << a.getSignStatus() \
 		<< "\nSign Grade: " << a.getSignGrade() \
-		<< "\nExec Grade: " << a.getExecGrade() << std::endl;
+		<< "\nExec Grade: " << a.getExecGrade() \
+		<< "\nTarget: " << a.getTarget() << std::endl;
 	return (out);
 }
 
@@ -84,10 +88,25 @@ int		AForm::getExecGrade() const
 	return (this->_exec_grade);
 }
 
+std::string	AForm::getTarget() const
+{
+	return (this->_target);
+}
+
 void	AForm::beSigned(const Bureaucrat& signer)
 {
 	if (this->_sign_grade < signer.getGrade())
 		throw tooLow;
 	else
 		this->_is_signed = true;
+}
+
+void	AForm::execute(const Bureaucrat& executer) const
+{
+	if (this->_exec_grade < executer.getGrade())
+		throw tooLow;
+	else if (this->_is_signed == false)
+		throw notSigned;
+	else
+		this->action();
 }

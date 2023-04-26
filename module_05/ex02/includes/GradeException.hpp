@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 21:12:15 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/24 21:14:55 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/26 14:33:41 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ class GradeTooHighException : public std::exception
 };
 
 class GradeTooLowException : public std::exception
+{
+	public:
+		virtual const char* what() const throw();
+};
+
+class FormNotSigned : public std::exception
 {
 	public:
 		virtual const char* what() const throw();

@@ -6,127 +6,71 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:38:35 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/25 09:37:07 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/26 14:41:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int	main()
 {
 	try
 	{
 		std::cout << "\n-------CONSTRUCTION-------\n";
-		Bureaucrat	high_grade_crat("high crat", 10);
-		Bureaucrat	low_grade_crat("low crat", 100);
-		AForm		hard_form("hard form", 11, 1);
-		AForm		easy_form("easy form", 101, 1);
-		AForm		medium_form("medium form", 99, 1);
-		AForm		extreme_form("extreme form", 9, 1);
+		Bureaucrat				cannot_sign("cannot sign", 146);
+		Bureaucrat				cannot_exec("cannot exec", 138);
+		Bureaucrat				can_everything("can everything", 136);
+		ShrubberyCreationForm	signed_shrubbery("house");
+		ShrubberyCreationForm	unsigned_shrubbery("home");
 		std::cout << "--------------------------\n";
 
-		std::cout << "\n---------PRINTING----------\n";
-		std::cout << "HIGH GRADE BUREAUCRAT:\n";
-		std::cout << "getname: " << high_grade_crat.getName();
-		std::cout << "\ngetgrade: " << high_grade_crat.getGrade();
-		std::cout << "\n<< operator: " << high_grade_crat;
-		
-		std::cout << "\nLOW GRADE BUREAUCRAT:\n";
-		std::cout << "getname: " << low_grade_crat.getName();
-		std::cout << "\ngetgrade: " << low_grade_crat.getGrade();
-		std::cout << "\n<< operator: " << low_grade_crat;
+		std::cout << "\n-------BUREAUCRATS--------\n";
+		std::cout << "BUREAUCRAT THAT CANT SIGN:\n";
+		std::cout << cannot_sign;
 
-		std::cout << "\nHARD FORM:\n";
-		std::cout << "getname: " << hard_form.getName();
-		std::cout << "\nstatus: " << hard_form.getSignStatus();
-		std::cout << "\nsign grade: " << hard_form.getSignGrade();
-		std::cout << "\nexec grade: " << hard_form.getExecGrade();
-		std::cout << "\n<< operator:\n" << hard_form;
-		
-		std::cout << "\nEASY FORM:\n";
-		std::cout << "getname: " << easy_form.getName();
-		std::cout << "\nstatus: " << easy_form.getSignStatus();
-		std::cout << "\nsign grade: " << easy_form.getSignGrade();
-		std::cout << "\nexec grade: " << easy_form.getExecGrade();
-		std::cout << "\n<< operator:\n" << easy_form;
-		
-		std::cout << "\nMEDIUM FORM:\n";
-		std::cout << "getname: " << medium_form.getName();
-		std::cout << "\nstatus: " << medium_form.getSignStatus();
-		std::cout << "\nsign grade: " << medium_form.getSignGrade();
-		std::cout << "\nexec grade: " << medium_form.getExecGrade();
-		std::cout << "\n<< operator:\n" << medium_form;
+		std::cout << "\nBUREAUCRAT THAT CANT EXEC:\n";
+		std::cout << cannot_exec;
 
-		std::cout << "\nEXTREME FORM:\n";
-		std::cout << "getname: " << extreme_form.getName();
-		std::cout << "\nstatus: " << extreme_form.getSignStatus();
-		std::cout << "\nsign grade: " << extreme_form.getSignGrade();
-		std::cout << "\nexec grade: " << extreme_form.getExecGrade();
-		std::cout << "\n<< operator:\n" << extreme_form;
+		std::cout << "\nBUREAUCRAT THAT CAN EXEC:\n";
+		std::cout << can_everything;
 		std::cout << "--------------------------\n";
 
 		// std::cout << "\n----------BROKEN----------\n";
-		// Bureaucrat	broken_crat("boop", -34);
-		// Bureaucrat	broken_crat2("boop2", 3434);
-		// Form		broken_form("broken", 0, 1);
-		// Form		broken_form2("broken2", 151, 1);
 		// std::cout << "--------------------------\n";
 		
 		std::cout << "\n----------SIGNING---------\n";
-		high_grade_crat.signForm(hard_form);
-		high_grade_crat.signForm(easy_form);
-		high_grade_crat.signForm(medium_form);
-		high_grade_crat.signForm(extreme_form);
-		low_grade_crat.signForm(hard_form);
-		low_grade_crat.signForm(easy_form);
-		low_grade_crat.signForm(medium_form);
-		low_grade_crat.signForm(extreme_form);
+		std::cout << "UNSIGNED FORM:\n" \
+				  << unsigned_shrubbery << std::endl;
+	
+		// signed_shrubbery.beSigned(cannot_sign);
+		// signed_shrubbery.beSigned(cannot_exec);
+		cannot_sign.signForm(signed_shrubbery);
+		cannot_exec.signForm(signed_shrubbery);
+
+		std::cout << "\nSIGNED FORM:\n" \
+				  << signed_shrubbery << std::endl;
 		std::cout << "--------------------------\n";
 
-		std::cout << "\n---------PRINTING----------\n";
-		std::cout << "HIGH GRADE BUREAUCRAT:\n";
-		std::cout << "getname: " << high_grade_crat.getName();
-		std::cout << "\ngetgrade: " << high_grade_crat.getGrade();
-		std::cout << "\n<< operator: " << high_grade_crat;
-		
-		std::cout << "\nLOW GRADE BUREAUCRAT:\n";
-		std::cout << "getname: " << low_grade_crat.getName();
-		std::cout << "\ngetgrade: " << low_grade_crat.getGrade();
-		std::cout << "\n<< operator: " << low_grade_crat;
-
-		std::cout << "\nHARD FORM:\n";
-		std::cout << "getname: " << hard_form.getName();
-		std::cout << "\nstatus: " << hard_form.getSignStatus();
-		std::cout << "\nsign grade: " << hard_form.getSignGrade();
-		std::cout << "\nexec grade: " << hard_form.getExecGrade();
-		std::cout << "\n<< operator:\n" << hard_form;
-		
-		std::cout << "\nEASY FORM:\n";
-		std::cout << "getname: " << easy_form.getName();
-		std::cout << "\nstatus: " << easy_form.getSignStatus();
-		std::cout << "\nsign grade: " << easy_form.getSignGrade();
-		std::cout << "\nexec grade: " << easy_form.getExecGrade();
-		std::cout << "\n<< operator:\n" << easy_form;
-		
-		std::cout << "\nMEDIUM FORM:\n";
-		std::cout << "getname: " << medium_form.getName();
-		std::cout << "\nstatus: " << medium_form.getSignStatus();
-		std::cout << "\nsign grade: " << medium_form.getSignGrade();
-		std::cout << "\nexec grade: " << medium_form.getExecGrade();
-		std::cout << "\n<< operator:\n" << medium_form;
-
-		std::cout << "\nEXTREME FORM:\n";
-		std::cout << "getname: " << extreme_form.getName();
-		std::cout << "\nstatus: " << extreme_form.getSignStatus();
-		std::cout << "\nsign grade: " << extreme_form.getSignGrade();
-		std::cout << "\nexec grade: " << extreme_form.getExecGrade();
-		std::cout << "\n<< operator:\n" << extreme_form;
+		std::cout << "\n---------EXECUTING--------\n";
+		// signed_shrubbery.execute(cannot_exec);
+		// signed_shrubbery.execute(can_everything);
+		// unsigned_shrubbery.execute(cannot_exec);
+		// unsigned_shrubbery.execute(can_everything);
+	
+		cannot_exec.executeForm(signed_shrubbery);
+		can_everything.executeForm(signed_shrubbery);
+		cannot_exec.executeForm(unsigned_shrubbery);
+		can_everything.executeForm(unsigned_shrubbery);
 		std::cout << "--------------------------\n";
+
+		std::cout << "\n---------DESTRUCTION----------\n";
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << "\nERROR: " << e.what() << '\n';
 	}
+	std::cout << "--------------------------\n";
 	return 0;
 }

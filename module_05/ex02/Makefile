@@ -15,8 +15,8 @@ SOURCES_FILES =	main.cpp \
 				AForm.cpp \
 				GradeException.cpp \
 				ShrubberyCreationForm.cpp \
-				RobotomyRequestForm.cpp \
-				PresidentialPardonForm.cpp
+				# RobotomyRequestForm.cpp \
+				# PresidentialPardonForm.cpp
 
 SRCS = $(addprefix $(SOURCE_DIR), $(SOURCES_FILES))
 

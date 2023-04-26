@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:21:47 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/25 09:37:55 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/26 14:31:11 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@ Bureaucrat::Bureaucrat()
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-	std::cout << "Bureaucrat Constrctor with name and grade\n";
+	std::cout << "Bureaucrat Constrctor with name and grade ";
 	if (grade < this->_max_grade)
 	{
-		std::cout << "Error: bureaucrat construction out of bounds\n";
+		std::cout << "\nError: bureaucrat construction out of bounds\n";
 		throw tooHigh;
 	}
 	if (grade > this->_min_grade)
 	{
-		std::cout << "Error: bureaucrat construction out of bounds\n";
+		std::cout << "\nError: bureaucrat construction out of bounds\n";
 		throw tooLow;
 	}
+	std::cout << "(" << this->_name << ")\n";
 	this->_grade = grade;
 }
 
@@ -93,12 +94,27 @@ void	Bureaucrat::signForm(AForm& form) const
 	try
 	{
 		form.beSigned(*this);
-		std::cout << this->_name << " signed " << form.getName() << "\n";
+		std::cout << "\"" << this->_name << "\" signed \"" << form.getName() << "\"\n";
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << this->_name << " couldn't sign " << form.getName() \
-				  << " because " << e.what() << '\n';
+		std::cerr << "\"" << this->_name << "\" couldn't sign \"" << form.getName() \
+				  << "\" because \"" << this->_name << "\" " \
+				  << e.what() << '\n';
 	}
 	
+}
+
+void	Bureaucrat::executeForm(const AForm& form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << "\"" << this->_name << "\" executed \"" << form.getName() << "\"\n";
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "\"" << this->_name << "\" couldn't execute \"" << form.getName() \
+				  << "\" because " << e.what() << '\n';
+	}
 }
