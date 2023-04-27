@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:38:35 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/27 13:49:25 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/27 23:20:51 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,68 +17,59 @@
 #include "PresidentialPardonForm.hpp"
 #include "Intern.hpp"
 
+
 int	main()
 {
 	try
 	{
 		std::cout << "\n-------CONSTRUCTION-------\n";
-		Bureaucrat				cannot_sign("cannot sign", 146);
-		Bureaucrat				cannot_exec("cannot exec", 138);
-		Bureaucrat				can_everything("can everything", 24);
-		ShrubberyCreationForm	signed_shrubbery("signed");
-		ShrubberyCreationForm	unsigned_shrubbery("unsigned");
-		RobotomyRequestForm		robotomy("bob");
-		PresidentialPardonForm	pardon("she");
-		Intern					terny();
-		ShrubberyCreationForm*	shrub;
+		Bureaucrat				bureaury("bureaury", 100);
+		AForm*	signed_shrubbery;
+		AForm*	unsigned_shrubbery;
+		AForm*	robotomy;
+		AForm*	pardon;
+		Intern					terny;
 		
-		shrub = terny.makeForm("shrubbery creation", "bobby");
+		signed_shrubbery = (terny.makeForm("shrubbery creation", "bobby"));
+		unsigned_shrubbery = (terny.makeForm("shrubbery creation", "bobby"));
+		robotomy = (terny.makeForm("shrubbery creation", "bobby"));
+		pardon = (terny.makeForm("shrubbery creation", "bobby"));
 		std::cout << "--------------------------\n";
 
 		std::cout << "\n-------BUREAUCRATS--------\n";
-		std::cout << "BUREAUCRAT THAT CANT SIGN:\n";
-		std::cout << cannot_sign;
-
-		std::cout << "\nBUREAUCRAT THAT CANT EXEC:\n";
-		std::cout << cannot_exec;
-
 		std::cout << "\nBUREAUCRAT THAT CAN EXEC:\n";
-		std::cout << can_everything;
+		std::cout << bureaury;
 		std::cout << "--------------------------\n";
 
-		// std::cout << "\n----------BROKEN----------\n";
-		// std::cout << "--------------------------\n";
-		
 		std::cout << "\n----------SIGNING---------\n";
-		std::cout << "UNSIGNED FORM:\n" \
-				  << unsigned_shrubbery << std::endl;
-	
-		// signed_shrubbery.beSigned(cannot_sign);
-		// signed_shrubbery.beSigned(cannot_exec);
-		cannot_sign.signForm(signed_shrubbery);
-		cannot_exec.signForm(signed_shrubbery);
-		can_everything.signForm(robotomy);
-		can_everything.signForm(pardon);
+		bureaury.signForm(*signed_shrubbery);
+		bureaury.signForm(*robotomy);
+		bureaury.signForm(*pardon);
+		std::cout << "\nUNSIGNED FORM:\n" \
+				  << *unsigned_shrubbery << std::endl;
 
-		std::cout << "\nSIGNED FORM:\n" \
-				  << signed_shrubbery << std::endl;
+		std::cout << "SIGNED FORM:\n" \
+				  << *signed_shrubbery << std::endl;
+		
+		std::cout << "ROBOTOMY:\n" \
+				  << *robotomy << std::endl;
+
+		std::cout << "PARDON:\n" \
+				  << *robotomy << std::endl;
 		std::cout << "--------------------------\n";
 
 		std::cout << "\n---------EXECUTING--------\n";
-		// signed_shrubbery.execute(cannot_exec);
-		// signed_shrubbery.execute(can_everything);
-		// unsigned_shrubbery.execute(cannot_exec);
-		// unsigned_shrubbery.execute(can_everything);
-	
-		cannot_exec.executeForm(signed_shrubbery);
-		can_everything.executeForm(signed_shrubbery);
-		cannot_exec.executeForm(unsigned_shrubbery);
-		can_everything.executeForm(unsigned_shrubbery);
-		can_everything.executeForm(robotomy);
-		can_everything.executeForm(pardon);
+		bureaury.executeForm(*signed_shrubbery);
+		bureaury.executeForm(*unsigned_shrubbery);
+		bureaury.executeForm(*robotomy);
+		bureaury.executeForm(*pardon);
 		std::cout << "--------------------------\n";
 
 		std::cout << "\n---------DESTRUCTION----------\n";
+		delete signed_shrubbery;
+		delete unsigned_shrubbery;
+		delete pardon;
+		delete robotomy;
 	}
 	catch(const std::exception& e)
 	{

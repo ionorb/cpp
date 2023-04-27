@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 16:14:43 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/27 13:45:55 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/27 22:58:57 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ AForm*	Intern::makeForm(std::string form, std::string target)
 	{
 		if (forms[i] == form)
 		{
-			std::cout << "Intern creates " << form << "\n";
+			std::cout << "Intern creates \"" << form << "\"\n";
 			return (this->*funcs[i])(target);
 		}
 	}
