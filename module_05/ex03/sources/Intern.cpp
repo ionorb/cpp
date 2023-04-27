@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 16:14:43 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/26 17:19:27 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/27 13:45:55 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,10 @@ AForm*	Intern::makeForm(std::string form, std::string target)
 	const int	N = 3;
 	typedef		AForm*(Intern::*fPointer)(std::string);
 	fPointer 	funcs[N] = \
-	{&shrubbery, &robotomy, &pardon};
+	{&Intern::shrubbery, &Intern::robotomy, &Intern::pardon};
 	std::string	forms[N] = \
 	{"shrubbery creation", "robotomy request", "presidential pardon"};
-	// fPointer	f = &shrubbery;
 
-	// int i = 0;
-	// while (i < 3 && forms[i] != form)
-	// 	i++;
 	for (int i = 0; i < N; i++)
 	{
 		if (forms[i] == form)
@@ -71,6 +67,5 @@ AForm*	Intern::makeForm(std::string form, std::string target)
 			return (this->*funcs[i])(target);
 		}
 	}
-	// std::cout << "Intern creates " << form << "\n";
 	throw badForm;
 }

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:38:35 by codespace         #+#    #+#             */
-/*   Updated: 2023/04/27 13:35:50 by codespace        ###   ########.fr       */
+/*   Updated: 2023/04/27 13:49:25 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int	main()
 {
@@ -28,6 +29,10 @@ int	main()
 		ShrubberyCreationForm	unsigned_shrubbery("unsigned");
 		RobotomyRequestForm		robotomy("bob");
 		PresidentialPardonForm	pardon("she");
+		Intern					terny();
+		ShrubberyCreationForm*	shrub;
+		
+		shrub = terny.makeForm("shrubbery creation", "bobby");
 		std::cout << "--------------------------\n";
 
 		std::cout << "\n-------BUREAUCRATS--------\n";
