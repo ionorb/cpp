@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/01 20:22:50 by yoel             ###   ########.fr       */
+/*   Updated: 2023/05/01 20:35:07 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ ScalarConverter::ScalarConverter()
 void	ScalarConverter::convert(std::string input)
 {
 	std::istringstream(input) >> ScalarConverter::integer;
+	std::istringstream(input) >> ScalarConverter::fpoint;
+	std::istringstream(input) >> ScalarConverter::dpoint;
+	// std::istringstream(input) >> ScalarConverter::character;
 	// std::cout << input << std::endl;
-	std::cout << ScalarConverter::integer << std::endl;
+	std::cout << "char: " << "Non displayable" << std::endl
+			  << "int: " << ScalarConverter::integer << std::endl
+			  << "float: " << ScalarConverter::fpoint << "f\n"
+			  << "double: " << ScalarConverter::dpoint << std::endl;
 }
