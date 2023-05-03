@@ -6,12 +6,13 @@
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:47 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 12:45:53 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/05/03 14:24:04 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
+#include "OverFlowException.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -33,6 +34,7 @@ class ScalarConverter
 		static void	toDouble(std::string input);
 		static void undefined(std::string input);
 		static int	detectType(std::string input);
+		static OverFlowException	overFlow;
 	public:
 		static char		character;
 		static int		integer;

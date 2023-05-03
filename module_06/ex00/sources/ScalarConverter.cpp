@@ -6,7 +6,7 @@
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 13:34:00 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/05/03 14:15:52 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,47 +49,10 @@ ScalarConverter::ScalarConverter()
 // 			  << "double: " << ScalarConverter::dpoint << std::endl;
 // }
 
-void ScalarConverter::toChar(std::string input)
-{
-	std::cout << "\nconvert toChar:\n\n";
-	(void)input;
-}
-
-void ScalarConverter::toInt(std::string input)
-{
-	
-	(void)input;
-	std::cout << "\nconvert toInt:\n\n";
-}
-
-void ScalarConverter::toFloat(std::string input)
-{
-	(void)input;
-	std::cout << "\nconvert toFloat:\n\n";
-	
-}
-
-void ScalarConverter::toDouble(std::string input)
-{
-	std::cout << "\nconvert toDouble:\n\n";
-	
-	(void)input;
-}
-
-bool ScalarConverter::containsMultiple(std::string input, std::string set)
-{
-	for (size_t i = 0; i < set.size(); i++)
-	{
-		if (input.find_first_of(set[i]) != input.find_last_of(set[i]))
-			return true;
-	}
-	return false;
-}
-
 bool ScalarConverter::isInvalidNumber(std::string input)
 {	
-	if (input == "-inf" || input == "+inf" || input == "nan" \
-	|| input == "-inff" || input == "+inff" || input == "nanf" || \
+	if (input == "-inf" || input == "inf" || input == "nan" \
+	|| input == "-inff" || input == "inff" || input == "nanf" || \
 	(!isdigit(input[0]) && input.size() == 1))
 		return (false);
 	if (input.size() == 0 || input.find_first_not_of("0123456789.-f") != input.npos \
@@ -117,13 +80,80 @@ int	ScalarConverter::detectType(std::string input)
 		return (INT);
 	if ((input.find('f') == input.size() - 1 \
 	&& isdigit(input[input.size() - 2])) || \
-	(input == "-inff" || input == "+inff" || input == "nanf"))
+	(input == "-inff" || input == "inff" || input == "nanf"))
 		return (FLOAT);
 	if (input.find(".") != input.npos || \
-	input == "-inf" || input == "+inf" || input == "nan")
+	input == "-inf" || input == "inf" || input == "nan")
 		return (DOUBLE);
 	return (std::cout << "\n\nFALLBACK\n\n", UNDEFINED);
 }
+
+void ScalarConverter::toChar(std::string input)
+{
+	std::cout << "\nconvert toChar:\n\n";
+	long double tester;
+	std::istringstream(input) >> tester;
+	if (tester > std::numeric_limits<char>::max())
+		std::cout << "char: ", throw overFlow;
+	std::istringstream(input) >> ScalarConverter::character;
+	ScalarConverter::character = static_cast<char>(ScalarConverter::character);
+	ScalarConverter::integer = static_cast<int>(ScalarConverter::character);
+	ScalarConverter::fpoint = static_cast<float>(ScalarConverter::character);
+	ScalarConverter::dpoint = static_cast<double>(ScalarConverter::character);
+}
+
+void ScalarConverter::toInt(std::string input)
+{
+	std::cout << "\nconvert toInt:\n\n";
+	long double tester;
+	std::istringstream(input) >> tester;
+	if (tester > std::numeric_limits<int>::max())
+		std::cout << "\nint overflow\n";
+		// throw overFlow;
+	std::istringstream(input) >> ScalarConverter::integer;
+	ScalarConverter::character = static_cast<char>(ScalarConverter::integer);
+	ScalarConverter::fpoint = static_cast<float>(ScalarConverter::integer);
+	ScalarConverter::dpoint = static_cast<double>(ScalarConverter::integer);
+}
+
+void ScalarConverter::toFloat(std::string input)
+{
+	std::cout << "\nconvert toFloat:\n\n";
+	long double tester;
+	input[input.size() - 1] = '\0';
+	std::istringstream(input) >> tester;
+	// if (tester > std::numeric_limits<float>::max())
+	// 	std::cout << "\nfloat overflow\n";
+	std::istringstream(input) >> ScalarConverter::fpoint;
+	ScalarConverter::character = static_cast<char>(ScalarConverter::fpoint);
+	ScalarConverter::integer = static_cast<int>(ScalarConverter::fpoint);
+	ScalarConverter::dpoint = static_cast<double>(ScalarConverter::fpoint);
+	
+}
+
+void ScalarConverter::toDouble(std::string input)
+{
+	std::cout << "\nconvert toDouble:\n\n";
+	long double tester;
+	std::istringstream(input) >> tester;
+	// if (tester > std::numeric_limits<double>::max())
+	// 	std::cout << "\ndouble overflow\n";
+	std::istringstream(input) >> ScalarConverter::dpoint;
+	ScalarConverter::character = static_cast<char>(ScalarConverter::dpoint);
+	ScalarConverter::integer = static_cast<int>(ScalarConverter::dpoint);
+	ScalarConverter::fpoint = static_cast<float>(ScalarConverter::dpoint);
+}
+
+bool ScalarConverter::containsMultiple(std::string input, std::string set)
+{
+	for (size_t i = 0; i < set.size(); i++)
+	{
+		if (input.find_first_of(set[i]) != input.find_last_of(set[i]))
+			return true;
+	}
+	return false;
+}
+
 
 void ScalarConverter::undefined(std::string input)
 {
@@ -140,8 +170,8 @@ void	ScalarConverter::convert(std::string input)
 	&ScalarConverter::toFloat, &ScalarConverter::toDouble, \
 	&ScalarConverter::undefined};
 	conversions[ScalarConverter::detectType(input)](input);
-	// std::cout << "char: " << ScalarConverter::character << std::endl
-	// 		  << "int: " << ScalarConverter::integer << std::endl
-	// 		  << "float: " << ScalarConverter::fpoint << "f\n"
-	// 		  << "double: " << ScalarConverter::dpoint << std::endl;
+	std::cout << "char: " << ScalarConverter::character << std::endl
+			  << "int: " << ScalarConverter::integer << std::endl
+			  << "float: " << ScalarConverter::fpoint << "f\n"
+			  << "double: " << ScalarConverter::dpoint << std::endl;
 }

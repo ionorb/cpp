@@ -11,7 +11,8 @@ BINARY = convert
 
 SOURCE_DIR = sources/
 SOURCES_FILES =	main.cpp \
-				ScalarConverter.cpp
+				ScalarConverter.cpp \
+				OverFlowException.cpp
 
 SRCS = $(addprefix $(SOURCE_DIR), $(SOURCES_FILES))
 
