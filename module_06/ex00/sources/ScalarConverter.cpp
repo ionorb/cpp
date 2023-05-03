@@ -6,7 +6,7 @@
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 12:28:02 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/05/03 13:17:43 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,32 @@ void ScalarConverter::toDouble(std::string input)
 	(void)input;
 }
 
+bool ScalarConverter::containsMultiple(std::string input, std::string set)
+{
+	for (size_t i = 0; i < set.size(); i++)
+	{
+		if (input.find_first_of(set[i]) != input.find_last_of(set[i]))
+			return true;
+	}
+	return false;
+}
+
 bool ScalarConverter::isInvalidNumber(std::string input)
 {	
 	if (input == "-inf" || input == "+inf" || input == "nan" \
-	|| (std::isalpha(input[0]) && input.size() == 1))
+	|| (!isdigit(input[0]) && input.size() == 1))
 		return (false);
-	if (input.size() == 0 || input.find_first_not_of("0123456789.f") != input.npos\
-	|| input.find_first_of(".") != input.find_last_of(".") || \
-	input.find_first_of("f") != input.find_last_of("f"))
+	if (input.size() == 0 || input.find_first_not_of("0123456789.-f") != input.npos \
+	|| containsMultiple(input, ".-f") || (input.find("-") != 0 \
+	&& input.find("-") != input.npos))
+		return (true);
+	if ((input.find("f") != input.npos && \
+	!isdigit(input[input.find("f") - 1])) || \
+	(input.find("f") != input.size() - 1 \
+	&& input.find("f") != input.npos))
+		return (true);
+	if (input.find(".") != input.npos \
+	&& input.find(".") == input.size() - 1)
 		return (true);
 	return (false);
 }
@@ -91,17 +109,16 @@ bool ScalarConverter::isInvalidNumber(std::string input)
 int	ScalarConverter::detectType(std::string input)
 {
 	if (ScalarConverter::isInvalidNumber(input))//input.size() == 0)
-		return (UNDEFINED);
-	if (std::isalpha(input[0]) && input.size() == 1)
+		return (std::cout << "invalidnum\n", UNDEFINED);
+	if (isalpha(input[0]) && input.size() == 1)
 		return (CHAR);
-	if (input.find_first_not_of("0123456789") == input.npos)
+	if (input.find_first_not_of("0123456789-") == input.npos)
 		return (INT);
-	if (input.find_first_of('f') == input.size() - 1 && \
-	input.find_first_not_of("0123456789.") == input.size() - 1)
+	if (input.find('f') == input.size() - 1)
 		return (FLOAT);
-	if (input.find_first_of(".") != input.npos)
+	if (input.find(".") != input.npos)
 		return (DOUBLE);
-	return (UNDEFINED);
+	return (std::cout << "\n\nFALLBACK\n\n", UNDEFINED);
 }
 
 void ScalarConverter::undefined(std::string input)

@@ -6,7 +6,7 @@
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:47 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 12:18:13 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/05/03 12:45:53 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class ScalarConverter
 	private:
 		ScalarConverter();
 		static bool isInvalidNumber(std::string input);
+		static bool containsMultiple(std::string input, std::string set);
 		static void	toChar(std::string input);
 		static void	toInt(std::string input);
 		static void	toFloat(std::string input);
