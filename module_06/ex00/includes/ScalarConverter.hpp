@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:47 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/01 20:22:15 by yoel             ###   ########.fr       */
+/*   Updated: 2023/05/03 12:18:13 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,23 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#define CHAR 0
+#define INT 1
+#define FLOAT 2
+#define DOUBLE 3
+#define UNDEFINED 4
 
 class ScalarConverter
 {
 	private:
 		ScalarConverter();
+		static bool isInvalidNumber(std::string input);
+		static void	toChar(std::string input);
+		static void	toInt(std::string input);
+		static void	toFloat(std::string input);
+		static void	toDouble(std::string input);
+		static void undefined(std::string input);
+		static int	detectType(std::string input);
 	public:
 		static char		character;
 		static int		integer;
