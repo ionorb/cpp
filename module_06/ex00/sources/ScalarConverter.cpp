@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 13:08:12 by codespace        ###   ########.fr       */
+/*   Updated: 2023/05/03 13:15:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,10 @@ void ScalarConverter::toFloat(std::string input)
 	std::cout << "\nconvert toFloat:\n\n";
 	long double convertion;
 	input[input.size() - 1] = '\0';
+	if (input == "inf")
+		convertion = std::numeric_limits<float>::infinity();
+	if (input == "-inf")
+		convertion = -std::numeric_limits<float>::infinity();
 	std::istringstream(input) >> convertion;
 	ScalarConverter::putValues(convertion);	
 }
@@ -166,9 +170,12 @@ void ScalarConverter::toDouble(std::string input)
 	std::cout << "\nconvert toDouble:\n\n";
 	long double convertion;
 	std::istringstream(input) >> convertion;
-	std::cout << "convertion: " << convertion << std::endl;
-	// ScalarConverter::putValues(convertion);
-	std::istringstream(input) >> ScalarConverter::dpoint;
+	if (input == "inf")
+		convertion = std::numeric_limits<double>::infinity();
+	if (input == "-inf")
+		convertion = -std::numeric_limits<double>::infinity();
+	ScalarConverter::putValues(convertion);
+	// std::istringstream(input) >> ScalarConverter::dpoint;
 }
 
 void ScalarConverter::undefined(std::string input)
