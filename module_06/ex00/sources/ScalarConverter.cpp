@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 19:18:40 by codespace        ###   ########.fr       */
+/*   Updated: 2023/05/03 19:28:04 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	ScalarConverter::putChar(long double input, bool is_int)
 {
 	(void)is_int;
 	ScalarConverter::character = static_cast<char>(input);
-	if (std::isnan(input) || std::isinf(input) || input < 0)
+	if (std::isnan(input) || std::isinf(input) || input < 0 || input > 127)
 		std::cout << "char: impossible\n";
 	else if (ScalarConverter::character <= 32 || ScalarConverter::character == 127)
 		std::cout << "char: Non displayable\n";
@@ -114,7 +114,8 @@ void	ScalarConverter::putInt(long double input, bool is_int)
 {
 	(void)is_int;
 	ScalarConverter::integer = static_cast<int>(input);
-	if (std::isnan(input) || std::isinf(input))
+	if (std::isnan(input) || input > std::numeric_limits<int>::max() \
+	|| input < std::numeric_limits<int>::min())
 		std::cout << "int: impossible\n";
 	else
 		std::cout << "int: " << ScalarConverter::integer << "\n";
@@ -152,7 +153,7 @@ void	ScalarConverter::putValues(long double input, bool is_int)
 
 void ScalarConverter::toChar(std::string input)
 {
-	std::cout << "\nconvert toChar:\n\n";
+	// std::cout << "\nconvert toChar:\n\n";
 	// long double conversion;
 	ScalarConverter::character = input[0];
 	if (ScalarConverter::character > std::numeric_limits<char>::max() \
@@ -165,7 +166,7 @@ void ScalarConverter::toChar(std::string input)
 
 void ScalarConverter::toInt(std::string input)
 {
-	std::cout << "\nconvert toInt:\n\n";
+	// std::cout << "\nconvert toInt:\n\n";
 	long double conversion;
 	std::istringstream(input) >> conversion;
 	if (conversion > std::numeric_limits<int>::max() \
@@ -176,7 +177,7 @@ void ScalarConverter::toInt(std::string input)
 
 void ScalarConverter::toFloat(std::string input)
 {
-	std::cout << "\nconvert toFloat:\n\n";
+	// std::cout << "\nconvert toFloat:\n\n";
 	long double conversion;
 	input[input.size() - 1] = '\0';
 	if (input == "inf")
@@ -189,7 +190,7 @@ void ScalarConverter::toFloat(std::string input)
 
 void ScalarConverter::toDouble(std::string input)
 {
-	std::cout << "\nconvert toDouble:\n\n";
+	// std::cout << "\nconvert toDouble:\n\n";
 	long double conversion;
 	std::istringstream(input) >> conversion;
 	if (input == "inf")
@@ -199,7 +200,6 @@ void ScalarConverter::toDouble(std::string input)
 	if (input == "nan")
 		conversion = std::numeric_limits<double>::quiet_NaN();
 	ScalarConverter::putValues(conversion, false);
-	// std::istringstream(input) >> ScalarConverter::dpoint;
 }
 
 void ScalarConverter::undefined(std::string input)
