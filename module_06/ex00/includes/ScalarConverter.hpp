@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:47 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 13:11:43 by codespace        ###   ########.fr       */
+/*   Updated: 2023/05/03 19:14:10 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <cmath>
 #define CHAR 0
 #define INT 1
 #define FLOAT 2
@@ -33,11 +34,11 @@ class ScalarConverter
 		static void	toInt(std::string input);
 		static void	toFloat(std::string input);
 		static void	toDouble(std::string input);
-		static void	putChar(long double input);
-		static void	putInt(long double input);
-		static void	putFloat(long double input);
-		static void	putDouble(long double input);
-		static void putValues(long double input);
+		static void	putChar(long double input, bool is_int);
+		static void	putInt(long double input, bool is_int);
+		static void	putFloat(long double input, bool is_int);
+		static void	putDouble(long double input, bool is_int);
+		static void putValues(long double input, bool is_int);
 		static void	undefined(std::string input);
 		static int	detectType(std::string input);
 		static OverFlowException	overFlow;
