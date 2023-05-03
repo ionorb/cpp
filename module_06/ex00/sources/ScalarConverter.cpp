@@ -6,7 +6,7 @@
 /*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 13:17:43 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/05/03 13:34:00 by myaccount        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ bool ScalarConverter::containsMultiple(std::string input, std::string set)
 bool ScalarConverter::isInvalidNumber(std::string input)
 {	
 	if (input == "-inf" || input == "+inf" || input == "nan" \
-	|| (!isdigit(input[0]) && input.size() == 1))
+	|| input == "-inff" || input == "+inff" || input == "nanf" || \
+	(!isdigit(input[0]) && input.size() == 1))
 		return (false);
 	if (input.size() == 0 || input.find_first_not_of("0123456789.-f") != input.npos \
 	|| containsMultiple(input, ".-f") || (input.find("-") != 0 \
@@ -114,9 +115,12 @@ int	ScalarConverter::detectType(std::string input)
 		return (CHAR);
 	if (input.find_first_not_of("0123456789-") == input.npos)
 		return (INT);
-	if (input.find('f') == input.size() - 1)
+	if ((input.find('f') == input.size() - 1 \
+	&& isdigit(input[input.size() - 2])) || \
+	(input == "-inff" || input == "+inff" || input == "nanf"))
 		return (FLOAT);
-	if (input.find(".") != input.npos)
+	if (input.find(".") != input.npos || \
+	input == "-inf" || input == "+inf" || input == "nan")
 		return (DOUBLE);
 	return (std::cout << "\n\nFALLBACK\n\n", UNDEFINED);
 }
