@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 14:15:52 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/05/03 13:08:12 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,16 @@ ScalarConverter::ScalarConverter()
 // 			  << "double: " << ScalarConverter::dpoint << std::endl;
 // }
 
+bool ScalarConverter::containsMultiple(std::string input, std::string set)
+{
+	for (size_t i = 0; i < set.size(); i++)
+	{
+		if (input.find_first_of(set[i]) != input.find_last_of(set[i]))
+			return true;
+	}
+	return false;
+}
+
 bool ScalarConverter::isInvalidNumber(std::string input)
 {	
 	if (input == "-inf" || input == "inf" || input == "nan" \
@@ -88,72 +98,78 @@ int	ScalarConverter::detectType(std::string input)
 	return (std::cout << "\n\nFALLBACK\n\n", UNDEFINED);
 }
 
+void	ScalarConverter::putChar(long double input)
+{
+	ScalarConverter::character = static_cast<char>(input);
+	if (ScalarConverter::character <= 32 || ScalarConverter::character == 127)
+		std::cout << "Char: Non displayable\n";
+}
+
+void	ScalarConverter::putInt(long double input)
+{
+	ScalarConverter::integer = static_cast<int>(input);
+}
+
+void	ScalarConverter::putFloat(long double input)
+{
+	ScalarConverter::fpoint = static_cast<float>(input);
+}
+
+void	ScalarConverter::putDouble(long double input)
+{
+	ScalarConverter::dpoint = static_cast<double>(input);
+}
+
+void	ScalarConverter::putValues(long double input)
+{
+	ScalarConverter::putChar(input);
+	ScalarConverter::putInt(input);
+	ScalarConverter::putFloat(input);
+	ScalarConverter::putDouble(input);
+}
+
 void ScalarConverter::toChar(std::string input)
 {
 	std::cout << "\nconvert toChar:\n\n";
-	long double tester;
-	std::istringstream(input) >> tester;
-	if (tester > std::numeric_limits<char>::max())
-		std::cout << "char: ", throw overFlow;
-	std::istringstream(input) >> ScalarConverter::character;
-	ScalarConverter::character = static_cast<char>(ScalarConverter::character);
-	ScalarConverter::integer = static_cast<int>(ScalarConverter::character);
-	ScalarConverter::fpoint = static_cast<float>(ScalarConverter::character);
-	ScalarConverter::dpoint = static_cast<double>(ScalarConverter::character);
+	long double convertion;
+	std::istringstream(input) >> convertion;
+	if (convertion > std::numeric_limits<char>::max() \
+	|| convertion < std::numeric_limits<char>::min())
+		throw std::overflow_error("Char Overflow!");
+	if (convertion <= 32 || convertion == 127)
+		throw std::overflow_error("Non Displayable Character!");
+	ScalarConverter::putValues(convertion);
 }
 
 void ScalarConverter::toInt(std::string input)
 {
 	std::cout << "\nconvert toInt:\n\n";
-	long double tester;
-	std::istringstream(input) >> tester;
-	if (tester > std::numeric_limits<int>::max())
-		std::cout << "\nint overflow\n";
-		// throw overFlow;
-	std::istringstream(input) >> ScalarConverter::integer;
-	ScalarConverter::character = static_cast<char>(ScalarConverter::integer);
-	ScalarConverter::fpoint = static_cast<float>(ScalarConverter::integer);
-	ScalarConverter::dpoint = static_cast<double>(ScalarConverter::integer);
+	long double convertion;
+	std::istringstream(input) >> convertion;
+	if (convertion > std::numeric_limits<int>::max() \
+	|| convertion < std::numeric_limits<int>::min())
+		throw std::overflow_error("Integer Overflow!");
+	ScalarConverter::putValues(convertion);
 }
 
 void ScalarConverter::toFloat(std::string input)
 {
 	std::cout << "\nconvert toFloat:\n\n";
-	long double tester;
+	long double convertion;
 	input[input.size() - 1] = '\0';
-	std::istringstream(input) >> tester;
-	// if (tester > std::numeric_limits<float>::max())
-	// 	std::cout << "\nfloat overflow\n";
-	std::istringstream(input) >> ScalarConverter::fpoint;
-	ScalarConverter::character = static_cast<char>(ScalarConverter::fpoint);
-	ScalarConverter::integer = static_cast<int>(ScalarConverter::fpoint);
-	ScalarConverter::dpoint = static_cast<double>(ScalarConverter::fpoint);
-	
+	std::istringstream(input) >> convertion;
+	ScalarConverter::putValues(convertion);	
 }
 
 void ScalarConverter::toDouble(std::string input)
 {
 	std::cout << "\nconvert toDouble:\n\n";
-	long double tester;
-	std::istringstream(input) >> tester;
-	// if (tester > std::numeric_limits<double>::max())
-	// 	std::cout << "\ndouble overflow\n";
+	long double convertion;
+	std::istringstream(input) >> convertion;
+	std::cout << "convertion: " << convertion << std::endl;
+	// ScalarConverter::putValues(convertion);
 	std::istringstream(input) >> ScalarConverter::dpoint;
-	ScalarConverter::character = static_cast<char>(ScalarConverter::dpoint);
-	ScalarConverter::integer = static_cast<int>(ScalarConverter::dpoint);
-	ScalarConverter::fpoint = static_cast<float>(ScalarConverter::dpoint);
 }
-
-bool ScalarConverter::containsMultiple(std::string input, std::string set)
-{
-	for (size_t i = 0; i < set.size(); i++)
-	{
-		if (input.find_first_of(set[i]) != input.find_last_of(set[i]))
-			return true;
-	}
-	return false;
-}
-
 
 void ScalarConverter::undefined(std::string input)
 {
@@ -169,7 +185,14 @@ void	ScalarConverter::convert(std::string input)
 	{&ScalarConverter::toChar, &ScalarConverter::toInt, \
 	&ScalarConverter::toFloat, &ScalarConverter::toDouble, \
 	&ScalarConverter::undefined};
-	conversions[ScalarConverter::detectType(input)](input);
+	try
+	{
+		conversions[ScalarConverter::detectType(input)](input);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	std::cout << "char: " << ScalarConverter::character << std::endl
 			  << "int: " << ScalarConverter::integer << std::endl
 			  << "float: " << ScalarConverter::fpoint << "f\n"

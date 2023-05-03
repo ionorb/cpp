@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myaccount <myaccount@student.42.fr>        +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:47 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 14:24:04 by myaccount        ###   ########.fr       */
+/*   Updated: 2023/05/03 12:52:37 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
 #include "OverFlowException.hpp"
+#include <limits>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -32,7 +33,12 @@ class ScalarConverter
 		static void	toInt(std::string input);
 		static void	toFloat(std::string input);
 		static void	toDouble(std::string input);
-		static void undefined(std::string input);
+		static void	putChar(long double input);
+		static void	putInt(long double input);
+		static void	putFloat(long double input);
+		static void	putDouble(long double input);
+		static void putValues(long double input);
+		static void	undefined(std::string input);
 		static int	detectType(std::string input);
 		static OverFlowException	overFlow;
 	public:
@@ -48,15 +54,4 @@ class ScalarConverter
 		static void	convert(std::string input);
 };
 
-// class Example {
-//    public :
-//    static int a;
-//    static int func(int b) {
-//       std::cout << "Static member function called";
-//       std::cout << "\nThe value of b is: " << b;
-//       return 0;
-//    }
-// };
-// int Example::a = 28;
-
-#endif 
+#endif
