@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:52:30 by codespace         #+#    #+#             */
-/*   Updated: 2023/05/10 19:31:21 by codespace        ###   ########.fr       */
+/*   Updated: 2023/05/10 20:04:56 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	main(void)
 {
+	Array<int> arr(20);
 	
+	for (int i = 0; i < 20; i++)
+		arr.arr[i] = (20 - i) * i;
+	for (int i = 0; i < 20; i++)
+		std::cout << arr.arr[i] << ", ";
 	return (0);
 }
