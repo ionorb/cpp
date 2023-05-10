@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 19:28:04 by codespace        ###   ########.fr       */
+/*   Updated: 2023/05/10 11:02:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ bool ScalarConverter::isInvalidNumber(std::string input)
 int	ScalarConverter::detectType(std::string input)
 {
 	if (ScalarConverter::isInvalidNumber(input))//input.size() == 0)
-		return (std::cout << "invalidnum\n", UNDEFINED);
+		return (UNDEFINED);
 	if (!isdigit(input[0]) && input.size() == 1)
 		return (CHAR);
 	if (input.find_first_not_of("0123456789-") == input.npos)
@@ -95,7 +95,7 @@ int	ScalarConverter::detectType(std::string input)
 	if (input.find(".") != input.npos || \
 	input == "-inf" || input == "inf" || input == "nan")
 		return (DOUBLE);
-	return (std::cout << "\n\nFALLBACK\n\n", UNDEFINED);
+	return (UNDEFINED);//, std::cout << "\n\nFALLBACK\n\n");
 }
 
 void	ScalarConverter::putChar(long double input, bool is_int)
@@ -204,9 +204,8 @@ void ScalarConverter::toDouble(std::string input)
 
 void ScalarConverter::undefined(std::string input)
 {
-	std::cout << "\nundefined:\n\n";
-	
 	(void)input;
+	throw std::overflow_error("Invalid Number!");
 }
 
 void	ScalarConverter::convert(std::string input)

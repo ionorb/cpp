@@ -10,9 +10,7 @@ FLAGS += -I$(INC_DIR)
 BINARY = convert
 
 SOURCE_DIR = sources/
-SOURCES_FILES =	main.cpp \
-				ScalarConverter.cpp \
-				OverFlowException.cpp
+SOURCES_FILES =	main.cpp ScalarConverter.cpp
 
 SRCS = $(addprefix $(SOURCE_DIR), $(SOURCES_FILES))
 

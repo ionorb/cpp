@@ -6,13 +6,13 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:12:47 by yoel              #+#    #+#             */
-/*   Updated: 2023/05/03 19:14:10 by codespace        ###   ########.fr       */
+/*   Updated: 2023/05/10 11:00:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
-#include "OverFlowException.hpp"
+// #include "OverFlowException.hpp"
 #include <limits>
 #include <iostream>
 #include <string>
@@ -41,7 +41,6 @@ class ScalarConverter
 		static void putValues(long double input, bool is_int);
 		static void	undefined(std::string input);
 		static int	detectType(std::string input);
-		static OverFlowException	overFlow;
 	public:
 		static char		character;
 		static int		integer;
