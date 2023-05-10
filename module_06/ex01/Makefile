@@ -10,7 +10,7 @@ FLAGS += -I$(INC_DIR)
 BINARY = serialize
 
 SOURCE_DIR = sources/
-SOURCES_FILES =	main.cpp
+SOURCES_FILES =	main.cpp Serializer.cpp
 
 SRCS = $(addprefix $(SOURCE_DIR), $(SOURCES_FILES))
 
