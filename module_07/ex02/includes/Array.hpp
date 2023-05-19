@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:52:31 by codespace         #+#    #+#             */
-/*   Updated: 2023/05/10 20:48:56 by codespace        ###   ########.fr       */
+/*   Updated: 2023/05/15 22:07:44 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class Array
 {
 	public:
 		Array();
+		~Array();
 		Array(unsigned int n);
 		Array(const Array& copy);
 		Array<T>&		operator = (const Array& copy);

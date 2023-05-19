@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 19:35:41 by codespace         #+#    #+#             */
-/*   Updated: 2023/05/10 20:49:10 by codespace        ###   ########.fr       */
+/*   Updated: 2023/05/15 22:07:27 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ Array<T>::Array() : len(0)
 {
 	std::cout << "Array Construction with no params\n";
 	this->arr = new T[0];
+}
+
+template <typename T>
+Array<T>::~Array()
+{
+	std::cout << "Array Destruction\n";
+	delete[] this->arr;
 }
 
 template <typename T>
@@ -52,8 +59,9 @@ Array<T>&	Array<T>::operator = (const Array& copy)
 	return (*this);
 }
 
-// template <typename T>
-// T&	Array<T>::operator [] (int index)
-// {
-// 	return (*this);
-// }
+template <typename T>
+T&	Array<T>::operator [] (int index)
+{
+	(void)index;
+	return (*this);
+}
