@@ -1,24 +1,79 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 18:52:30 by codespace         #+#    #+#             */
-/*   Updated: 2023/05/10 20:04:56 by codespace        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <iostream>
+#include <Array.hpp>
+#include <cstdlib>
 
-#include "Array.hpp"
+#define MAX_VAL 750
+// int main(int, char**)
+// {
+// 	// int * a = new int();
+// 	// std::cout << "a: " << *a << std::endl;
+//     Array<int> numbers(MAX_VAL);
+//     int* mirror = new int[MAX_VAL];
+//     srand(time(NULL));
+//     for (int i = 0; i < MAX_VAL; i++)
+//     {
+//         const int value = rand();
+//         numbers[i] = value;
+//         mirror[i] = value;
+//     }
+//     //SCOPE
+//     {
+//         Array<int> tmp = numbers;
+//         Array<int> test(tmp);
+//     }
+
+//     for (int i = 0; i < MAX_VAL; i++)
+//     {
+//         if (mirror[i] != numbers[i])
+//         {
+//             std::cerr << "didn't save the same value!!" << std::endl;
+//             return 1;
+//         }
+//     }
+//     try
+//     {
+//         numbers[-2] = 0;
+//     }
+//     catch(const std::exception& e)
+//     {
+//         std::cerr << e.what() << '\n';
+//     }
+//     try
+//     {
+//         numbers[MAX_VAL] = 0;
+//     }
+//     catch(const std::exception& e)
+//     {
+//         std::cerr << e.what() << '\n';
+//     }
+
+//     for (int i = 0; i < MAX_VAL; i++)
+//     {
+//         numbers[i] = rand();
+//     }
+//     delete [] mirror;//
+//     return 0;
+// }
 
 int	main(void)
 {
 	Array<int> arr(20);
-	
-	for (int i = 0; i < 20; i++)
-		arr.arr[i] = (20 - i) * i;
-	for (int i = 0; i < 20; i++)
-		std::cout << arr.arr[i] << ", ";
+	Array<int> arr2;
+
+	try
+	{
+		// arr2[0] = 1;
+		// for (int i = 0; i < 20; i++)
+		// 	std::cout << arr[i] << ", ";
+		for (int i = 0; i < 20; i++)
+			arr[i] = (20 - i) * i;
+		for (int i = 0; i < 20; i++)
+			std::cout << arr[i] << ", ";
+		std::cout << arr.size() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	return (0);
 }

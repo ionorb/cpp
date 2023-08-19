@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:52:31 by codespace         #+#    #+#             */
-/*   Updated: 2023/05/15 22:07:44 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/08/19 10:18:39 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class Array
 		T&				operator[](int);
 		unsigned int	size(void) const;
 		unsigned int	len;
+	private:
 		T				*arr;
-	// private:
 };
 
 #include "Array.tpp"

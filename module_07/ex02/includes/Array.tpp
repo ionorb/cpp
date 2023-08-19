@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 19:35:41 by codespace         #+#    #+#             */
-/*   Updated: 2023/05/15 22:07:27 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/08/19 10:14:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,21 @@ Array<T>::Array(unsigned int n) : len(n)
 template <typename T>
 unsigned int Array<T>::size(void) const
 {
-	return (this->n);
+	return (this->len);
 }
 
 template <typename T>
 Array<T>::Array(const Array& copy) : len(copy.len)
 {
 	this->arr = new T[this->len];
-	for (unsigned int i = 0; i < this->n; i++)
+	for (unsigned int i = 0; i < this->len; i++)
 		this->arr[i] = copy.arr[i];
 }
 
 template <typename T>
 Array<T>&	Array<T>::operator = (const Array& copy)
 {
+	len = copy.len;
 	if (this == copy)
 		return (*this);
 	delete[] this->arr;
@@ -62,6 +63,9 @@ Array<T>&	Array<T>::operator = (const Array& copy)
 template <typename T>
 T&	Array<T>::operator [] (int index)
 {
-	(void)index;
-	return (*this);
+	if (index < 0)
+		throw std::out_of_range("negative index");
+	if ((unsigned int)index >= this->len)
+		throw std::out_of_range("index too large");
+	return this->arr[index];
 }
