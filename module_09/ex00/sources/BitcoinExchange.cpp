@@ -12,12 +12,24 @@ BitcoinExchange::BitcoinExchange(std::string input_path)
 std::string	BitcoinExchange::calculateLine(std::string date, std::string value) const
 {
 	std::map<std::string, double>	map(this->_data);
-	std::string					ret;
+	std::string						ret;
+	double							val;
 
 	// std::cout << "calc line\n";
 	this->checkDate(date);
 	if (map.count(date))
 		ret = date + " => " + value + " = " + SSTR(map[date] * atof(value.c_str())) + "\n";
+	else
+	{
+		map[date] = -69;
+		std::map<std::string, double>::iterator it = map.find(date);
+		if (it == map.begin())
+			val = (++it)->second;
+		else
+			val = (--it)->second;
+		// std::cout << "MAP: " << map[date] << " VAL: " << val << std::endl;
+		ret = date + " => " + value + " = " + SSTR(val * atof(value.c_str())) + "\n";
+	}
 	return (ret);
 }
 
