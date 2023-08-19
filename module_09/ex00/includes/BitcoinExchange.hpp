@@ -41,6 +41,7 @@ class BitcoinExchange
 		void							processInput(std::string input) const;
 		std::string						calculateLine(std::string date, std::string value) const;
 		void							checkDate(std::string date) const;
+		double							checkAmount(std::string amount) const;
 
 
 

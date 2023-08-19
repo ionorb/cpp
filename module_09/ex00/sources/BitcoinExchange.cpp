@@ -9,26 +9,28 @@ BitcoinExchange::BitcoinExchange(std::string input_path)
 	this->processInput(this->_input);
 }
 
-std::string	BitcoinExchange::calculateLine(std::string date, std::string value) const
+std::string	BitcoinExchange::calculateLine(std::string date, std::string amount) const
 {
 	std::map<std::string, double>	map(this->_data);
 	std::string						ret;
-	double							val;
+	double							value;
+	double							num_amount;
 
 	// std::cout << "calc line\n";
 	this->checkDate(date);
+	num_amount = this->checkAmount(amount);
 	if (map.count(date))
-		ret = date + " => " + value + " = " + SSTR(map[date] * atof(value.c_str())) + "\n";
+		ret = date + " => " + amount + " = " + SSTR(map[date] * num_amount) + "\n";
 	else
 	{
 		map[date] = -69;
 		std::map<std::string, double>::iterator it = map.find(date);
 		if (it == map.begin())
-			val = (++it)->second;
+			value = (++it)->second;
 		else
-			val = (--it)->second;
-		// std::cout << "MAP: " << map[date] << " VAL: " << val << std::endl;
-		ret = date + " => " + value + " = " + SSTR(val * atof(value.c_str())) + "\n";
+			value = (--it)->second;
+		// std::cout << "MAP: " << map[date] << " value: " << value << std::endl;
+		ret = date + " => " + amount + " = " + SSTR(value * num_amount) + "\n";
 	}
 	return (ret);
 }
@@ -38,10 +40,26 @@ void	BitcoinExchange::checkDate(std::string date) const
 	(void)date;
 }
 
+double	BitcoinExchange::checkAmount(std::string amount) const
+{
+	double	num_amount = atof(amount.c_str());
+
+	if (!amount.empty() && amount[0] == '-')
+		throw std::runtime_error("not a positive number");
+	if (amount.empty() || amount.find_first_not_of("0123456789.") != amount.npos || std::count(amount.begin(), amount.end(), '.') > 1)
+		throw std::runtime_error("invalid number");
+	if (num_amount > 1000 || amount.size() > 4)
+		throw std::runtime_error("too large a number");
+	if (num_amount < 0)
+		throw std::runtime_error("not a positive number");
+	return (num_amount);
+}
+
 void	BitcoinExchange::processInput(std::string input) const
 {
 	std::istringstream	in(input);
-	std::string			line, date, value;
+	std::string			line, date, amount;
+	std::string			err = "bad input";
 
 	std::getline(in, date);
 	while(std::getline(in, line))
@@ -49,12 +67,12 @@ void	BitcoinExchange::processInput(std::string input) const
 		try
 		{
 			if (line.find('|') == line.npos)
-				throw std::runtime_error("bad input");
+				throw std::runtime_error(err + " => " + line);
 			line = this->removeWhite(line);
 			date = line.substr(0, line.find('|'));
-			value = line.substr(line.find('|') + 1);
-			// std::cout << "\'" << date << "\' | \'" << value << "\'" << std::endl;
-			std::cout << this->calculateLine(date, value);
+			amount = line.substr(line.find('|') + 1);
+			// std::cout << "\'" << date << "\' | \'" << amount << "\'" << std::endl;
+			std::cout << this->calculateLine(date, amount);
 		}
 		catch(const std::exception& e)
 		{
