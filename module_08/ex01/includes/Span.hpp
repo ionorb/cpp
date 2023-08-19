@@ -1,6 +1,9 @@
 #ifndef SPAN_HPP
 # define SPAN_HPP
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <limits>
 
 class Span
 {
@@ -16,12 +19,13 @@ class Span
 		unsigned int	shortestSpan( void ) const;
 		unsigned int	longestSpan( void ) const;
 
-		//getter
-		unsigned int	getNmax( void ) const;
+		//getters
+		unsigned int		getNmax( void ) const;
+		std::vector<int>	getVec( void ) const;
 
 	private:
 		const unsigned int	_n_max;
-		int*				_arr;
+		std::vector<int>	_vec;
 };
 
 #endif
