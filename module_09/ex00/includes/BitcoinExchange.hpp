@@ -5,17 +5,18 @@
 #include <sstream>
 #include <string>
 #include <fstream>
+#include <stdlib.h>
 
 class BitcoinExchange
 {
 	public:
 		//OCCF
-		BitcoinExchange(std::string data_path);
+		BitcoinExchange(std::string input_path);
 		~BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange& copy);
 		BitcoinExchange&	operator = (const BitcoinExchange& copy);
 
-		//member functions
+		//methods
 
 		//getters
 		std::map<std::string, float>	getData() const;
@@ -23,9 +24,15 @@ class BitcoinExchange
 		//setters
 
 	private:
-		std::map<std::string, float> _data;
+		//attributes
+		std::map<std::string, float>	_data;
+		std::string						_rawData;
+		std::string						_input;
 
-		std::string	readFile(std::string path) const;
+		//methods
+		std::string						readFile(std::string path) const;
+		std::map<std::string, float>	parseData(std::string rawData) const;
+
 };
 
 #endif
