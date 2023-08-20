@@ -32,18 +32,55 @@ std::string	RPN::removeWhite(std::string str) const
 	return (str);
 }
 
+bool isDigit(char c)
+{
+	if (c >= '0' && c <= '9')
+		return true;
+	return false;
+}
+
+int	evaluate(char oper, int first, int second)
+{
+	switch (oper)
+	{
+		case '+':
+			return (second + first);
+		case '-':
+			return (second - first);
+		case '/':
+			return (second / first);
+		case '*':
+			return (second * first);
+	}
+	throw std::runtime_error("invalid operator");
+	return (0);
+}
+
 int	RPN::calculate()
 {
 	std::string	expr(this->_input);
 
-	std::cout << "calculating...\n";
-	std::cout << expr << std::endl;
-	if (expr.find_first_not_of("0123456789+-/*"))
-		
+	// std::cout << "calculating...\n";
+	// std::cout << expr << std::endl;
+	if (expr.find_first_not_of("0123456789+-/*") != expr.npos)
+		throw std::runtime_error("invalid char in expression");
 	for (size_t i = 0; i < expr.size(); i++)
 	{
-		std::cout << expr[i] << std::endl;
+		if (isDigit(expr[i]))
+			this->_stack.push(expr[i] - '0');
+		else if (this->_stack.size() >= 2)
+		{
+			int first = this->_stack.top();
+			this->_stack.pop();
+			int second = this->_stack.top();
+			this->_stack.pop();
+			this->_stack.push(evaluate(expr[i], first, second));
+		}
+		else
+			throw std::runtime_error("invalidyo");
 	}
-	return (0);
+	if (this->_stack.size() > 1)
+		throw std::runtime_error("invalid");
+	return (this->_stack.top());
 }
 
