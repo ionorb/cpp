@@ -27,6 +27,8 @@ class BitcoinExchange
 
 		//getters
 		std::map<std::string, double>	getData() const;
+		std::string						getRawData() const;
+		std::string						getInput() const;
 
 		//setters
 

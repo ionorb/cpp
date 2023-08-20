@@ -13,21 +13,34 @@ BitcoinExchange::~BitcoinExchange() {}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& copy)
 {
-	// for (unsigned int i = 0; i < this->_n_max; i++)
-	// 	this->_vec[i] = copy._vec[i];
-	(void)copy;
+	this->_data = copy.getData();
+	this->_rawData = copy.getRawData();
+	this->_input = copy.getInput();
 }
 
 BitcoinExchange&	BitcoinExchange::operator = (const BitcoinExchange& copy)
 {
-	if (this == &copy)
-		return (*this);
+	if (this != &copy)
+	{
+		this->_data = copy.getData();
+		this->_rawData = copy.getRawData();
+		this->_input = copy.getInput();
+	}
 	return (*this);
 }
 
 std::map<std::string, double>	BitcoinExchange::getData() const
 {
 	return (this->_data);
+}
+
+std::string	BitcoinExchange::getRawData() const
+{
+	return (this->_rawData);
+}
+std::string BitcoinExchange::getInput() const
+{
+	return (this->_input);
 }
 
 std::string	BitcoinExchange::readFile(std::string path) const
