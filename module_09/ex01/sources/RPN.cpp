@@ -60,8 +60,6 @@ int	RPN::calculate()
 {
 	std::string	expr(this->_input);
 
-	// std::cout << "calculating...\n";
-	// std::cout << expr << std::endl;
 	if (expr.find_first_not_of("0123456789+-/*") != expr.npos)
 		throw std::runtime_error("invalid char in expression");
 	for (size_t i = 0; i < expr.size(); i++)
