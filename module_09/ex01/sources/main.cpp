@@ -11,11 +11,11 @@ int	main(int ac, char **av)
 	{
 		RPN calc(av[1]);
 
-		std::cout << "result: " << calc.calculate() << std::endl;
+		std::cout << calc.calculate() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "Error: " << e.what() << '\n';
 	}
 	
 	return (0);

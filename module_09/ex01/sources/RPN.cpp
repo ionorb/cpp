@@ -11,19 +11,28 @@ RPN::~RPN() {}
 RPN::RPN(const RPN& copy)
 {
 	this->_stack = copy.getStack();
+	this->_input = copy.getInput();
 }
 
 RPN&	RPN::operator = (const RPN& copy)
 {
 	if (this != &copy)
+	{
 		this->_stack = copy.getStack();
+		this->_input = copy.getInput();
+	}
 	return (*this);
 }
 
-//getter
+//getters
 std::stack<int>	RPN::getStack() const
 {
 	return (this->_stack);
+}
+
+std::string	RPN::getInput() const
+{
+	return (this->_input);
 }
 
 std::string	RPN::removeWhite(std::string str) const
@@ -48,7 +57,10 @@ int	evaluate(char oper, int first, int second)
 		case '-':
 			return (second - first);
 		case '/':
-			return (second / first);
+			if (first == 0)
+				throw std::runtime_error("divide by zero");
+			else
+				return (second / first);
 		case '*':
 			return (second * first);
 	}

@@ -27,7 +27,8 @@ class RPN
 		int	calculate();
 
 		//getters
-		std::stack<int> getStack() const;
+		std::stack<int>	getStack() const;
+		std::string		getInput() const;
 
 	private:
 		//attributes
