@@ -4,6 +4,7 @@
 PmergeMe::PmergeMe(std::string input) 
 {
 	this->_input = input;
+	proccessInput();
 }
 
 PmergeMe::~PmergeMe() {}
@@ -57,4 +58,17 @@ std::list<int>	PmergeMe::listSort()
 {
 	std::list<int> lst;
 	return lst;
+}
+
+void	PmergeMe::proccessInput()
+{
+	std::stringstream	ss(this->_input);
+	std::string			num;
+	std::vector<int>	vec;
+
+	for(int i = 0; std::getline(ss, num, ' '); i++)
+	{
+		this->_vector.push_back(atoi(num.c_str()));
+		this->_list.push_back(atoi(num.c_str()));
+	}
 }

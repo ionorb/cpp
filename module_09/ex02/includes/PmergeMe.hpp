@@ -34,7 +34,6 @@ class PmergeMe
 		std::string			getInput() const;
 		unsigned int		getNumElems() const;
 
-
 	private:
 		//attributes
 		std::string			_input;
@@ -43,6 +42,7 @@ class PmergeMe
 		unsigned int		_num_elems;
 
 		//methods
+		void				proccessInput();
 };
 
 #endif

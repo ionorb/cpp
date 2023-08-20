@@ -5,7 +5,7 @@ std::string	showVector(std::vector<int> vec)
 	std::string	ret;
 
 	for (size_t i = 0; i < vec.size(); i++)
-		ret += SSTR(vec[i]);
+		ret = ret + SSTR(vec[i]) + " ";
 	return (ret);
 }
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 		double				list_time = 0, vec_time = 0;
 		clock_t				c_start, c_end;
 		std::vector<int>	unsorted = merge.getVector(), sorted;
-		std::list<int>		list;
+		std::list<int>		sorted_list;
  
 		/* Record Vector Sort */
 		c_start = std::clock(); //start clock
@@ -32,7 +32,7 @@ int	main(int ac, char **av)
 
 		/* Record List Sort */
 		c_start = std::clock(); //start clock
-		list = merge.listSort();
+		sorted_list = merge.listSort();
 		c_end = std::clock(); //stop clock
 		list_time = double(c_end - c_start);// / double(CLOCKS_PER_SEC / 1000);
 	
@@ -52,8 +52,6 @@ int	main(int ac, char **av)
 		// sorted = merge.vectorSort();
 		// gettimeofday(&end, NULL); // stop timer.
 		// vec_time = 1000000 * (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec);
-	
-
 	
 		std::cout << "Before: " << showVector(unsorted) << std::endl;
 		std::cout << "After: " << showVector(sorted) << std:: endl;
