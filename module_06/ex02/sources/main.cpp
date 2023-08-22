@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:11:33 by codespace         #+#    #+#             */
-/*   Updated: 2023/05/10 13:27:16 by codespace        ###   ########.fr       */
+/*   Updated: 2023/08/22 16:11:56 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ void	identify_recursive(Base& p, int which)
 		switch(which)
 		{
 			case 0:
-				dynamic_cast<A&>(p);
+				(void)dynamic_cast<A&>(p);
 				std::cout << "A\n";
 				break ;
 			case 1:
-				dynamic_cast<B&>(p);
+				(void)dynamic_cast<B&>(p);
 				std::cout << "B\n";
 				break ;
 			case 2:
-				dynamic_cast<C&>(p);
+				(void)dynamic_cast<C&>(p);
 				std::cout << "C\n";
 				break ;
 			default:
@@ -80,6 +80,7 @@ int	main(int ac, char **av)
 		Base*	base = generate();
 		identify(base);
 		identify(*base);
+		delete base;
 	}
 	return (0);
 }
