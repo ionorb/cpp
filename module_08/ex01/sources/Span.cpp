@@ -1,6 +1,8 @@
 #include "Span.hpp"
 
 //OCCF
+Span::Span() : _n_max(0) {}
+
 Span::Span(unsigned int n) : _n_max(n) {}
 
 Span::~Span() {}
@@ -22,7 +24,7 @@ Span&	Span::operator = (const Span& copy)
 }
 
 //member functions
-void			Span::addNumber(int number)
+void	Span::addNumber(int number)
 {
 	if (this->_vec.size() >= this->_n_max)
 		throw std::out_of_range("Maximum number of items reached");
