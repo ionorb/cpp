@@ -48,9 +48,32 @@ unsigned int	PmergeMe::getNumElems() const
 	return (this->_num_elems);
 }
 
+// int	jacob_num(int i, int j)
+// {
+// 	int	jacob = 0;
+// 	jacob = (1<<i) - j;
+// 	return (jacob);
+// }
+
+int	jacob_num(int j)
+{
+	int x = 0;
+
+	for (int i = 0; i < j; i++)
+		x = (1<<i) - x;
+	return x;
+}
+
 std::vector<int>	PmergeMe::vectorSort()
 {
 	std::vector<int> vec;
+	// int prev = 1;
+	for (int i = 0; i < 10; i++)
+	{
+		std::cout << "JACOB " << i << ": " << jacob_num(i) << std::endl;
+	// 	prev = jacob_num(i, prev);
+	// 	std::cerr << "JACOB " << i << ": " << prev << std::endl;
+	}
 	return vec;
 }
 
