@@ -11,6 +11,7 @@
 #include <vector>
 #include <list>
 #include <sys/time.h>
+#include <limits>
 
 #define SSTR( x ) static_cast< std::ostringstream & >( \
         ( std::ostringstream() << std::dec << x ) ).str()

@@ -91,6 +91,12 @@ void	PmergeMe::proccessInput()
 
 	for(int i = 0; std::getline(ss, num, ' '); i++)
 	{
+		if (num.find_first_not_of("0123456789") != num.npos)
+			throw std::runtime_error("invalid number in input sequence!");
+		if (num.size() > 10)
+			throw std::runtime_error("too large number found in sequence!");
+		if (atof(num.c_str()) > std::numeric_limits<int>::max())
+			throw std::runtime_error("please keep numbers in the range: [ 0 - 2147583647 ]");
 		this->_vector.push_back(atoi(num.c_str()));
 		this->_list.push_back(atoi(num.c_str()));
 	}
