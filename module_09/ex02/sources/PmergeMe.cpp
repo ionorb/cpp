@@ -80,24 +80,52 @@ void	sort_pairs(std::vector< std::vector<int> > &pairs)
 			std::iter_swap(pairs[i].begin(), pairs[i].rbegin());
 	}
 }
+void	fill_main_and_pend(std::vector< std::vector<int> > paired_sequence, std::vector<int> &main_chain, std::vector<int> &pend)
+{
+	for (size_t i = 0; i < paired_sequence.size(); i++)
+	{
+		pend.push_back(paired_sequence[i][0]);
+		main_chain.push_back(paired_sequence[i][1]);
+	}
+}
 
 std::vector<int>	PmergeMe::vectorSort()
 {
-	std::vector<int>				vec = this->_vector;
+	std::vector<int>				main_chain = this->_vector;
+	std::vector<int>				pend;
 	std::vector<std::vector<int> >	paired_sequence;
 	
 	bool	is_even = true;
 	int		stragler;
+	(void)is_even;
+	(void)stragler;
 	
 	// check if sequence is odd and add stragler if so
-	if (vec.size() % 2)
+	if (main_chain.size() % 2)
 	{
 		is_even = false;
-		stragler = *vec.rbegin();
-		vec.pop_back();
+		stragler = *main_chain.rbegin();
+		main_chain.pop_back();
 	}
 
-	paired_sequence = make_paired_sequence(vec);
+	//group all elements into vectors with two elements to make a vector of vectors with two ints
+	paired_sequence = make_paired_sequence(main_chain);
+
+	main_chain.clear(); // clear main_chain for later use
+
+	// // printing paired sequence
+	// std::cout << "Paired Sequence:\n";
+	// for (size_t i = 0; i < paired_sequence.size(); i++)
+	// 	std::cout << "[" << paired_sequence[i][0] << ", " << paired_sequence[i][1] << "], ";
+	// std::cout << "stragler: ";
+	// if (is_even)
+	// 	std::cout << "FALSE\n";
+	// else
+	// 	std::cout << stragler << std::endl;
+	// std::cout << std::endl;
+
+	//sort each pair in ascending order. e.g. [5, 4] becomes [4, 5]
+	sort_pairs(paired_sequence);
 
 	// printing paired sequence
 	std::cout << "Paired Sequence:\n";
@@ -110,21 +138,13 @@ std::vector<int>	PmergeMe::vectorSort()
 		std::cout << stragler << std::endl;
 	std::cout << std::endl;
 
-	sort_pairs(paired_sequence);
+	/* Take the second value of each pair (the larger value) and push it to 'main_chain'
+	 and take the first value of each pair (the smaller value) and push it to 'pend'. */
+	fill_main_and_pend(paired_sequence, main_chain, pend);
 
-		// printing paired sequence
-	std::cout << "Paired Sequence:\n";
-	for (size_t i = 0; i < paired_sequence.size(); i++)
-		std::cout << "[" << paired_sequence[i][0] << ", " << paired_sequence[i][1] << "], ";
-	std::cout << "stragler: ";
-	if (is_even)
-		std::cout << "FALSE\n";
-	else
-		std::cout << stragler << std::endl;
-	std::cout << std::endl;
 	// for (int i = 0; i < 10; i++)
 	// 	std::cout << "JACOB " << i << ": " << jacob_num(i) << std::endl;
-	return vec;
+	return main_chain;
 }
 
 std::list<int>	PmergeMe::listSort()
