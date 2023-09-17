@@ -133,19 +133,23 @@ std::vector<int>	generate_insert_order(size_t size)
 
 	// for (size_t i = 0; i < size; i++)
 	// 	insert_order.push_back(i);
+
 	insert_order.push_back(0);
-	for (size_t i = 0; i < size; i++)
+	for (size_t j = 0; j < size; j++)
 	{
-		jacob_num = jacob_num_generate(i + 3);
-		// insert_order.push_back(jacob_num);
+		jacob_num = jacob_num_generate(j + 3);
 		if (jacob_num >= (int)size)
 		{
-			for (int i = size - 1; i > prev; i--)
-				insert_order.push_back(i);
+			int i = (int)(size);
+			while (i > prev)
+			{
+				insert_order.push_back(i - 1);
+				i--;
+			}
 			break ;
 		}
-		for (int i = jacob_num; i > prev && insert_order.size() < size; i--)
-			insert_order.push_back(i);
+		for (int i = jacob_num; i > prev && insert_order.size() <= size; i--)
+			insert_order.push_back(i - 1);
 		prev = jacob_num;
 	}
 	std::cout << "order: ";
@@ -158,7 +162,7 @@ std::vector<int>	generate_insert_order(size_t size)
 void	insert_main_chain(std::vector<int> &main_chain, std::vector<int> pend)
 {
 	int					num_inserted = 0;
-	std::vector<int>	insert_order = generate_insert_order(pend.size() - 1);
+	std::vector<int>	insert_order = generate_insert_order(pend.size());
 	
 	// main_chain.insert(main_chain.begin(), pend[0]);
 	// num_inserted++;
