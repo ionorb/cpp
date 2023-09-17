@@ -1,10 +1,9 @@
 #include "PmergeMe.hpp"
 
 //OCCF
-PmergeMe::PmergeMe(std::string input) 
+PmergeMe::PmergeMe(char** av, int ac)
 {
-	this->_input = input;
-	proccessInput();
+	proccessInput(av, ac);
 }
 
 PmergeMe::~PmergeMe() {}
@@ -13,7 +12,6 @@ PmergeMe::PmergeMe(const PmergeMe& copy)
 {
 	this->_vector = copy.getVector();
 	this->_list = copy.getList();
-	this->_input = copy.getInput();
 	this->_num_elems = copy.getNumElems();
 }
 
@@ -23,7 +21,6 @@ PmergeMe&	PmergeMe::operator = (const PmergeMe& copy)
 	{
 		this->_vector = copy.getVector();
 		this->_list = copy.getList();
-		this->_input = copy.getInput();
 		this->_num_elems = copy.getNumElems();
 	}
 	return (*this);
@@ -37,10 +34,6 @@ std::vector<int>	PmergeMe::getVector() const
 std::list<int>	PmergeMe::getList() const
 {
 	return (this->_list);
-}
-std::string	PmergeMe::getInput() const
-{
-	return (this->_input);
 }
 
 unsigned int	PmergeMe::getNumElems() const
@@ -95,14 +88,9 @@ std::vector<int>	PmergeMe::vectorSort()
 		std::cout << "FALSE\n";
 	else
 		std::cout << stragler << std::endl;
-	// int prev = 1;
-
-	for (int i = 0; i < 10; i++)
-	{
-		std::cout << "JACOB " << i << ": " << jacob_num(i) << std::endl;
-	// 	prev = jacob_num(i, prev);
-	// 	std::cerr << "JACOB " << i << ": " << prev << std::endl;
-	}
+	std::cout << std::endl;
+	// for (int i = 0; i < 10; i++)
+	// 	std::cout << "JACOB " << i << ": " << jacob_num(i) << std::endl;
 	return vec;
 }
 
@@ -112,15 +100,15 @@ std::list<int>	PmergeMe::listSort()
 	return lst;
 }
 
-void	PmergeMe::proccessInput()
+void	PmergeMe::proccessInput(char** av, int ac)
 {
-	std::stringstream	ss(this->_input);
-	std::string			num;
+	// std::stringstream	ss(this->_input);
 	int					nbr;
 	// std::vector<int>	vec;
 
-	while (std::getline(ss, num, ' '))
+	for (int j = 1; j < ac; j++)
 	{
+		std::string	num(av[j]);
 		if (num.find_first_not_of("0123456789") != num.npos)
 			throw std::runtime_error("invalid number in input sequence!");
 		if (num.size() > 10)

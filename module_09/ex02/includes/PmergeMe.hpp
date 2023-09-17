@@ -20,7 +20,7 @@ class PmergeMe
 {
 	public:
 		//OCCF
-		PmergeMe(std::string input);
+		PmergeMe(char** av, int ac);
 		~PmergeMe();
 		PmergeMe(const PmergeMe& copy);
 		PmergeMe&	operator = (const PmergeMe& copy);
@@ -32,18 +32,16 @@ class PmergeMe
 		//getters
 		std::vector<int>	getVector() const;
 		std::list<int>		getList() const;
-		std::string			getInput() const;
 		unsigned int		getNumElems() const;
 
 	private:
 		//attributes
-		std::string			_input;
 		std::list<int>		_list;
 		std::vector<int>	_vector;
 		unsigned int		_num_elems;
 
 		//methods
-		void				proccessInput();
+		void				proccessInput(char** av, int ac);
 };
 
 #endif

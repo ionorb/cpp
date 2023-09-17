@@ -11,14 +11,16 @@ std::string	showVector(std::vector<int> vec)
 
 int	main(int ac, char **av)
 {
-	if (ac != 2)
+	if (ac < 3)
 	{
 		std::cerr << "Usage: ./PmergeMe [sequence]" << std::endl;
+		std::cerr << "please each number as a seperate argument in the sequence.\n";
+		std::cerr << "at least 2 numbers must be given.\n";
 		return (1);
 	}
 	try
 	{
-		PmergeMe			merge(av[1]);
+		PmergeMe			merge(av, ac);
 		double				list_time = 0, vec_time = 0;
 		clock_t				c_start, c_end;
 		std::vector<int>	unsorted = merge.getVector(), sorted;
