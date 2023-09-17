@@ -89,6 +89,24 @@ void	fill_main_and_pend(std::vector< std::vector<int> > paired_sequence, std::ve
 	}
 }
 
+bool	compare_pair(std::vector<int> first, std::vector<int> second)
+{
+	return (first[1] < second[1]);
+}
+
+std::vector< std::vector<int> >	pair_merge_sort(std::vector< std::vector<int> > pairs)
+{
+	if (pairs.size() <= 1)
+		return pairs;
+	std::vector< std::vector<int> > left(pairs.begin(), pairs.begin() + (pairs.size() / 2));
+	std::vector< std::vector<int> > right(pairs.begin() + (pairs.size() / 2), pairs.end());
+	std::vector< std::vector<int> > first = pair_merge_sort(left);
+	std::vector< std::vector<int> > second = pair_merge_sort(right);
+	std::vector< std::vector<int> >	dest(first.size() + second.size());
+	std::merge(first.begin(), first.end(), second.begin(), second.end(), dest.begin(), compare_pair);
+	return (dest);
+}
+
 std::vector<int>	PmergeMe::vectorSort()
 {
 	std::vector<int>				main_chain = this->_vector;
@@ -113,19 +131,11 @@ std::vector<int>	PmergeMe::vectorSort()
 
 	main_chain.clear(); // clear main_chain for later use
 
-	// // printing paired sequence
-	// std::cout << "Paired Sequence:\n";
-	// for (size_t i = 0; i < paired_sequence.size(); i++)
-	// 	std::cout << "[" << paired_sequence[i][0] << ", " << paired_sequence[i][1] << "], ";
-	// std::cout << "stragler: ";
-	// if (is_even)
-	// 	std::cout << "FALSE\n";
-	// else
-	// 	std::cout << stragler << std::endl;
-	// std::cout << std::endl;
-
 	//sort each pair in ascending order. e.g. [5, 4] becomes [4, 5]
 	sort_pairs(paired_sequence);
+
+	// recursively sort the pairs int order of their second/larger values using merge sort method
+	paired_sequence = pair_merge_sort(paired_sequence);
 
 	// printing paired sequence
 	std::cout << "Paired Sequence:\n";
@@ -137,6 +147,7 @@ std::vector<int>	PmergeMe::vectorSort()
 	else
 		std::cout << stragler << std::endl;
 	std::cout << std::endl;
+
 
 	/* Take the second value of each pair (the larger value) and push it to 'main_chain'
 	 and take the first value of each pair (the smaller value) and push it to 'pend'. */
