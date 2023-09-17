@@ -66,8 +66,37 @@ int	jacob_num(int j)
 
 std::vector<int>	PmergeMe::vectorSort()
 {
-	std::vector<int> vec;
+	std::vector<int>				vec = this->_vector;
+	std::vector<std::vector<int> >	paired_sequence;
+	
+	bool	is_even = true;
+	int		stragler;
+	
+	if (vec.size() % 2)
+	{
+		is_even = false;
+		stragler = *vec.rbegin();
+		vec.pop_back();
+	}
+	for (size_t i = 0; i < vec.size(); i+=0)
+	{
+		std::vector<int> pair;
+		pair.push_back(vec[i++]);
+		pair.push_back(vec[i++]);
+		paired_sequence.push_back(pair);
+	}
+	std::cout << "Paired Sequence:\n";
+	for (size_t i = 0; i < paired_sequence.size(); i++)
+	{
+		std::cout << "[" << paired_sequence[i][0] << ", " << paired_sequence[i][1] << "], ";
+	}
+	std::cout << "stragler: ";
+	if (is_even)
+		std::cout << "FALSE\n";
+	else
+		std::cout << stragler << std::endl;
 	// int prev = 1;
+
 	for (int i = 0; i < 10; i++)
 	{
 		std::cout << "JACOB " << i << ": " << jacob_num(i) << std::endl;
@@ -87,9 +116,10 @@ void	PmergeMe::proccessInput()
 {
 	std::stringstream	ss(this->_input);
 	std::string			num;
-	std::vector<int>	vec;
+	int					nbr;
+	// std::vector<int>	vec;
 
-	for(int i = 0; std::getline(ss, num, ' '); i++)
+	while (std::getline(ss, num, ' '))
 	{
 		if (num.find_first_not_of("0123456789") != num.npos)
 			throw std::runtime_error("invalid number in input sequence!");
@@ -97,7 +127,13 @@ void	PmergeMe::proccessInput()
 			throw std::runtime_error("too large number found in sequence!");
 		if (atof(num.c_str()) > std::numeric_limits<int>::max())
 			throw std::runtime_error("please keep numbers in the range: [ 0 - 2147583647 ]");
-		this->_vector.push_back(atoi(num.c_str()));
-		this->_list.push_back(atoi(num.c_str()));
+		nbr = atoi(num.c_str());
+		for (size_t i = 0; i < this->_vector.size(); i++)
+		{
+			if (this->_vector[i] == nbr)
+				throw std::runtime_error("duplicates found in input sequence!");
+		}
+		this->_vector.push_back(nbr);
+		this->_list.push_back(nbr);
 	}
 }
