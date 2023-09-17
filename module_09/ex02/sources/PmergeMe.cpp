@@ -57,6 +57,30 @@ int	jacob_num(int j)
 	return x;
 }
 
+std::vector< std::vector<int> >	make_paired_sequence(std::vector<int> vec)
+{
+	std::vector< std::vector<int> >	paired_sequence;
+ 
+	// split vector into pairs and add them to a list of pairs: 'paired_sequence'
+	for (size_t i = 0; i < vec.size(); i+=0)
+	{
+		std::vector<int> pair;
+		pair.push_back(vec[i++]);
+		pair.push_back(vec[i++]);
+		paired_sequence.push_back(pair);
+	}
+	return paired_sequence;
+}
+
+void	sort_pairs(std::vector< std::vector<int> > &pairs)
+{
+	for (size_t i = 0; i < pairs.size(); i++)
+	{
+		if (pairs[i][0] > pairs[i][1])
+			std::iter_swap(pairs[i].begin(), pairs[i].rbegin());
+	}
+}
+
 std::vector<int>	PmergeMe::vectorSort()
 {
 	std::vector<int>				vec = this->_vector;
@@ -65,24 +89,33 @@ std::vector<int>	PmergeMe::vectorSort()
 	bool	is_even = true;
 	int		stragler;
 	
+	// check if sequence is odd and add stragler if so
 	if (vec.size() % 2)
 	{
 		is_even = false;
 		stragler = *vec.rbegin();
 		vec.pop_back();
 	}
-	for (size_t i = 0; i < vec.size(); i+=0)
-	{
-		std::vector<int> pair;
-		pair.push_back(vec[i++]);
-		pair.push_back(vec[i++]);
-		paired_sequence.push_back(pair);
-	}
+
+	paired_sequence = make_paired_sequence(vec);
+
+	// printing paired sequence
 	std::cout << "Paired Sequence:\n";
 	for (size_t i = 0; i < paired_sequence.size(); i++)
-	{
 		std::cout << "[" << paired_sequence[i][0] << ", " << paired_sequence[i][1] << "], ";
-	}
+	std::cout << "stragler: ";
+	if (is_even)
+		std::cout << "FALSE\n";
+	else
+		std::cout << stragler << std::endl;
+	std::cout << std::endl;
+
+	sort_pairs(paired_sequence);
+
+		// printing paired sequence
+	std::cout << "Paired Sequence:\n";
+	for (size_t i = 0; i < paired_sequence.size(); i++)
+		std::cout << "[" << paired_sequence[i][0] << ", " << paired_sequence[i][1] << "], ";
 	std::cout << "stragler: ";
 	if (is_even)
 		std::cout << "FALSE\n";
@@ -102,9 +135,7 @@ std::list<int>	PmergeMe::listSort()
 
 void	PmergeMe::proccessInput(char** av, int ac)
 {
-	// std::stringstream	ss(this->_input);
 	int					nbr;
-	// std::vector<int>	vec;
 
 	for (int j = 1; j < ac; j++)
 	{
