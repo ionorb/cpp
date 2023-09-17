@@ -57,7 +57,7 @@ int	jacob_num(int j)
 	return x;
 }
 
-std::vector< std::vector<int> >	make_paired_sequence(std::vector<int> vec)
+std::vector< std::vector<int> >	make_paired_sequence(const std::vector<int> &vec)
 {
 	std::vector< std::vector<int> >	paired_sequence;
  
@@ -76,11 +76,12 @@ void	sort_pairs(std::vector< std::vector<int> > &pairs)
 {
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
+		g_comparison_count++;
 		if (pairs[i][0] > pairs[i][1])
 			std::iter_swap(pairs[i].begin(), pairs[i].rbegin());
 	}
 }
-void	fill_main_and_pend(std::vector< std::vector<int> > paired_sequence, std::vector<int> &main_chain, std::vector<int> &pend)
+void	fill_main_and_pend(std::vector< std::vector<int> > &paired_sequence, std::vector<int> &main_chain, std::vector<int> &pend)
 {
 	for (size_t i = 0; i < paired_sequence.size(); i++)
 	{
@@ -89,12 +90,13 @@ void	fill_main_and_pend(std::vector< std::vector<int> > paired_sequence, std::ve
 	}
 }
 
-bool	compare_pair(std::vector<int> first, std::vector<int> second)
+bool	compare_pair(const std::vector<int> &first, const std::vector<int> &second)
 {
+	g_comparison_count++;
 	return (first[1] < second[1]);
 }
 
-std::vector< std::vector<int> >	pair_merge_sort(std::vector< std::vector<int> > pairs)
+std::vector< std::vector<int> >	pair_merge_sort(const std::vector< std::vector<int> > &pairs)
 {
 	if (pairs.size() <= 1)
 		return pairs;
@@ -107,12 +109,52 @@ std::vector< std::vector<int> >	pair_merge_sort(std::vector< std::vector<int> > 
 	return (dest);
 }
 
+size_t	binary_insert(std::vector<int> &main_chain, int value, int right)
+{
+	int left = 0;
+
+	while (left <= right) 
+	{
+		int mid = left + (right - left) / 2;
+		if (main_chain[mid] < value)
+			left = mid + 1;
+		else
+			right = mid - 1;
+		g_comparison_count++;
+	}
+	return left; // Return the index where the element should be inserted
+}
+
+std::vector<int>	generate_insert_order(size_t size)
+{
+	std::vector<int> insert_order;
+	for (size_t i = 0; i < size; i++)
+		insert_order.push_back(i);
+	return insert_order;
+}
+
+void	insert_main_chain(std::vector<int> &main_chain, std::vector<int> pend)
+{
+	int					num_inserted = 0;
+	std::vector<int>	insert_order = generate_insert_order(pend.size());
+	
+	// main_chain.insert(main_chain.begin(), pend[0]);
+	// num_inserted++;
+	for (size_t i = 0; i < insert_order.size(); i++)
+	{
+		int index = insert_order[i];
+		int value = pend[index];
+		main_chain.insert(main_chain.begin() + binary_insert(main_chain, value, index + num_inserted), value);
+		num_inserted++;
+	}
+}
+
 std::vector<int>	PmergeMe::vectorSort()
 {
 	std::vector<int>				main_chain = this->_vector;
 	std::vector<int>				pend;
 	std::vector<std::vector<int> >	paired_sequence;
-	
+
 	bool	is_even = true;
 	int		stragler;
 	(void)is_even;
@@ -137,24 +179,47 @@ std::vector<int>	PmergeMe::vectorSort()
 	// recursively sort the pairs int order of their second/larger values using merge sort method
 	paired_sequence = pair_merge_sort(paired_sequence);
 
-	// printing paired sequence
-	std::cout << "Paired Sequence:\n";
-	for (size_t i = 0; i < paired_sequence.size(); i++)
-		std::cout << "[" << paired_sequence[i][0] << ", " << paired_sequence[i][1] << "], ";
-	std::cout << "stragler: ";
+	// // printing paired sequence
+	// std::cout << "Paired Sequence:\n";
+	// for (size_t i = 0; i < paired_sequence.size(); i++)
+	// 	std::cout << "[" << paired_sequence[i][0] << ", " << paired_sequence[i][1] << "], ";
+	// std::cout << "stragler: ";
+	// if (is_even)
+	// 	std::cout << "FALSE\n";
+	// else
+	// 	std::cout << stragler << std::endl;
+	// std::cout << std::endl;
+
+
+	/* Take the second value of each pair (the larger value) and push it to 'main_chain'
+	and take the first value of each pair (the smaller value) and push it to 'pend'. */
+	fill_main_and_pend(paired_sequence, main_chain, pend);
+
+	std::cout << "main_chain:\t";
+	for (size_t i = 0; i < main_chain.size(); i++)
+		std::cout << main_chain[i] << ",\t";
+	std::cout << "end\n";
+
+	std::cout << "pend:\t\t";
+	for (size_t i = 0; i < pend.size(); i++)
+		std::cout << pend[i] << ",\t";
+	std::cout << "end\n";
+
+	std::cout << "stragler:\t";
 	if (is_even)
 		std::cout << "FALSE\n";
 	else
 		std::cout << stragler << std::endl;
-	std::cout << std::endl;
 
-
-	/* Take the second value of each pair (the larger value) and push it to 'main_chain'
-	 and take the first value of each pair (the smaller value) and push it to 'pend'. */
-	fill_main_and_pend(paired_sequence, main_chain, pend);
-
+	/* Use binary search to insert values from 'pend' into 'main_chain'.
+	Values from pend to insert are picked in the order defined by jacobsthal numbers. */
+	insert_main_chain(main_chain, pend);
 	// for (int i = 0; i < 10; i++)
 	// 	std::cout << "JACOB " << i << ": " << jacob_num(i) << std::endl;
+	// for (size_t i = 0; i < main_chain.size(); i++)
+	// 	std::cout 
+	if (!is_even)
+		main_chain.insert(main_chain.begin() + binary_insert(main_chain, stragler, main_chain.size() - 1), stragler);
 	return main_chain;
 }
 

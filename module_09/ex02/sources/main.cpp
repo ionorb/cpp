@@ -1,5 +1,7 @@
 #include "PmergeMe.hpp"
 
+int g_comparison_count = 0;
+
 std::string	showVector(std::vector<int> vec)
 {
 	std::string	ret;
@@ -61,6 +63,7 @@ int	main(int ac, char **av)
 				  << " elements with " << "std::vector : " << std::setprecision(10) << vec_time << "us\n";
 		std::cout << "Time to process a range of " << merge.getNumElems() \
 				  << " elements with " << "std::list : " << std::setprecision(10) << list_time << "us\n";
+		std::cout << "NUMBER OF COMPARISONS: " << g_comparison_count << std::endl;
 	}
 	catch(const std::exception& e)
 	{
