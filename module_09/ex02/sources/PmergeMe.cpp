@@ -48,7 +48,7 @@ unsigned int	PmergeMe::getNumElems() const
 // 	return (jacob);
 // }
 
-int	jacob_num(int j)
+int	jacob_num_generate(int j)
 {
 	int x = 0;
 
@@ -127,16 +127,38 @@ size_t	binary_insert(std::vector<int> &main_chain, int value, int right)
 
 std::vector<int>	generate_insert_order(size_t size)
 {
-	std::vector<int> insert_order;
+	std::vector<int>	insert_order;
+	int					jacob_num = 0;
+	int					prev = 1;
+
+	// for (size_t i = 0; i < size; i++)
+	// 	insert_order.push_back(i);
+	insert_order.push_back(0);
 	for (size_t i = 0; i < size; i++)
-		insert_order.push_back(i);
+	{
+		jacob_num = jacob_num_generate(i + 3);
+		// insert_order.push_back(jacob_num);
+		if (jacob_num >= (int)size)
+		{
+			for (int i = size - 1; i > prev; i--)
+				insert_order.push_back(i);
+			break ;
+		}
+		for (int i = jacob_num; i > prev && insert_order.size() < size; i--)
+			insert_order.push_back(i);
+		prev = jacob_num;
+	}
+	std::cout << "order: ";
+	for (size_t i = 0; i < insert_order.size(); i++)
+		std::cout << insert_order[i] << ", ";
+	std::cout << "end\n";
 	return insert_order;
 }
 
 void	insert_main_chain(std::vector<int> &main_chain, std::vector<int> pend)
 {
 	int					num_inserted = 0;
-	std::vector<int>	insert_order = generate_insert_order(pend.size());
+	std::vector<int>	insert_order = generate_insert_order(pend.size() - 1);
 	
 	// main_chain.insert(main_chain.begin(), pend[0]);
 	// num_inserted++;
@@ -215,7 +237,7 @@ std::vector<int>	PmergeMe::vectorSort()
 	Values from pend to insert are picked in the order defined by jacobsthal numbers. */
 	insert_main_chain(main_chain, pend);
 	// for (int i = 0; i < 10; i++)
-	// 	std::cout << "JACOB " << i << ": " << jacob_num(i) << std::endl;
+	// 	std::cout << "JACOB " << i << ": " << jacob_num_generate(i) << std::endl;
 	// for (size_t i = 0; i < main_chain.size(); i++)
 	// 	std::cout 
 	if (!is_even)
