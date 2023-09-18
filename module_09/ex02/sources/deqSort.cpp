@@ -28,7 +28,7 @@ void	sort_pairs(std::deque< std::deque<int> > &pairs)
 {
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
-		g_comparison_count++;
+		deq_comparison_count++;
 		if (pairs[i][0] > pairs[i][1])
 			std::iter_swap(pairs[i].begin(), pairs[i].rbegin());
 	}
@@ -44,7 +44,7 @@ void	fill_main_and_pend(std::deque< std::deque<int> > &paired_sequence, std::deq
 
 bool	compare_pair(const std::deque<int> &first, const std::deque<int> &second)
 {
-	g_comparison_count++;
+	deq_comparison_count++;
 	return (first[1] < second[1]);
 }
 
@@ -72,14 +72,14 @@ size_t	binary_insert(std::deque<int> &main_chain, int value, int right)
 			left = mid + 1;
 		else
 			right = mid - 1;
-		g_comparison_count++;
+		deq_comparison_count++;
 	}
 	return left; // Return the index where the element should be inserted
 }
 
 std::deque<int>	generate_insert_order_deq(size_t size)
 {
-	std::deque<int>	insert_order;
+	std::deque<int>		insert_order;
 	int					jacob_num = 0;
 	int					prev = 1;
 

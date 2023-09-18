@@ -5,7 +5,8 @@
 #include <vector>
 #include <deque>
 
-extern int g_comparison_count;
+extern int vec_comparison_count;
+extern int deq_comparison_count;
 
 std::vector<int>	vecSort(std::vector<int> main_chain);
 std::deque<int>		deqSort(std::deque<int> main_chain);

@@ -2,6 +2,7 @@
 # define RPN_HPP
 #include <stack>
 #include <iostream>
+#include <limits>
 #include <sstream>
 #include <string>
 #include <fstream>
@@ -27,12 +28,12 @@ class RPN
 		int	calculate();
 
 		//getters
-		std::stack<int>	getStack() const;
+		std::stack<long long>	getStack() const;
 		std::string		getInput() const;
 
 	private:
 		//attributes
-		std::stack<int>	_stack;
+		std::stack<long long>	_stack;
 		std::string		_input;
 
 		//methods

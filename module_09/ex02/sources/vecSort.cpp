@@ -19,7 +19,7 @@ void	sort_pairs(std::vector< std::vector<int> > &pairs)
 {
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
-		g_comparison_count++;
+		vec_comparison_count++;
 		if (pairs[i][0] > pairs[i][1])
 			std::iter_swap(pairs[i].begin(), pairs[i].rbegin());
 	}
@@ -35,7 +35,7 @@ void	fill_main_and_pend(std::vector< std::vector<int> > &paired_sequence, std::v
 
 bool	compare_pair(const std::vector<int> &first, const std::vector<int> &second)
 {
-	g_comparison_count++;
+	vec_comparison_count++;
 	return (first[1] < second[1]);
 }
 
@@ -63,7 +63,7 @@ size_t	binary_insert(std::vector<int> &main_chain, int value, int right)
 			left = mid + 1;
 		else
 			right = mid - 1;
-		g_comparison_count++;
+		vec_comparison_count++;
 	}
 	return left; // Return the index where the element should be inserted
 }

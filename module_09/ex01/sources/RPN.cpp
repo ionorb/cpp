@@ -25,7 +25,7 @@ RPN&	RPN::operator = (const RPN& copy)
 }
 
 //getters
-std::stack<int>	RPN::getStack() const
+std::stack<long long>	RPN::getStack() const
 {
 	return (this->_stack);
 }
@@ -48,7 +48,7 @@ bool isDigit(char c)
 	return false;
 }
 
-int	evaluate(char oper, int first, int second)
+long long	evaluate(char oper, long long first, long long second)
 {
 	switch (oper)
 	{
@@ -71,6 +71,8 @@ int	evaluate(char oper, int first, int second)
 int	RPN::calculate()
 {
 	std::string	expr(this->_input);
+	double int_max = std::numeric_limits<int>::max();
+	double int_min = std::numeric_limits<int>::min();
 
 	if (expr.find_first_not_of("0123456789+-/*") != expr.npos)
 		throw std::runtime_error("invalid char in expression");
@@ -80,14 +82,18 @@ int	RPN::calculate()
 			this->_stack.push(expr[i] - '0');
 		else if (this->_stack.size() >= 2)
 		{
-			int first = this->_stack.top();
+			long long first = this->_stack.top();
+			if (first > int_max || first < int_min)
+				throw std::runtime_error("overflow");
 			this->_stack.pop();
-			int second = this->_stack.top();
+			long long second = this->_stack.top();
+			if (first > int_max || first < int_min)
+				throw std::runtime_error("overflow");
 			this->_stack.pop();
 			this->_stack.push(evaluate(expr[i], first, second));
 		}
 		else
-			throw std::runtime_error("invalidyo");
+			throw std::runtime_error("invalid");
 	}
 	if (this->_stack.size() > 1)
 		throw std::runtime_error("invalid");
