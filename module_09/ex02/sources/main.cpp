@@ -23,22 +23,22 @@ int	main(int ac, char **av)
 	try
 	{
 		PmergeMe			merge(av, ac);
-		double				list_time = 0, vec_time = 0;
+		double				deque_time = 0, vec_time = 0;
 		clock_t				c_start, c_end;
 		std::vector<int>	unsorted = merge.getVector(), sorted;
-		std::list<int>		sorted_list;
+		std::deque<int>		sorted_deque;
  
 		/* Record Vector Sort */
 		c_start = std::clock(); //start clock
 		sorted = merge.vectorSort();
 		c_end = std::clock(); //stop clock
-		vec_time = double(c_end - c_start);// / double(CLOCKS_PER_SEC / 1000);
+		vec_time = static_cast<double>(c_end - c_start) / CLOCKS_PER_SEC * 1000000;
 
-		/* Record List Sort */
+		/* Record deque Sort */
 		c_start = std::clock(); //start clock
-		sorted_list = merge.listSort();
+		sorted_deque = merge.dequeSort();
 		c_end = std::clock(); //stop clock
-		list_time = double(c_end - c_start);// / double(CLOCKS_PER_SEC / 1000);
+		deque_time = static_cast<double>(c_end - c_start) / CLOCKS_PER_SEC * 1000000;
 	
 		
 		// struct timeval start, end;
@@ -46,9 +46,9 @@ int	main(int ac, char **av)
 		// gettimeofday(&start, NULL); // start timer.
 		// // unsync the I/O of C and C++.
 		// std::ios_base::sync_with_stdio(false);
-		// list = merge.listSort();
+		// deque = merge.dequeSort();
 		// gettimeofday(&end, NULL); // stop timer.
-		// list_time = 1000000 * (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec);
+		// deque_time = 1000000 * (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec);
 
 		// gettimeofday(&start, NULL); // start timer.
 		// // unsync the I/O of C and C++.
@@ -59,11 +59,11 @@ int	main(int ac, char **av)
 	
 		std::cout << "Before: " << showVector(unsorted) << std::endl;
 		std::cout << "After: " << showVector(sorted) << std:: endl;
-		std::cout << "Time to process a range of " << merge.getNumElems() \
+		std::cout << "Time to process a sequence of " << ac \
 				  << " elements with " << "std::vector : " << std::setprecision(10) << vec_time << "us\n";
-		std::cout << "Time to process a range of " << merge.getNumElems() \
-				  << " elements with " << "std::list : " << std::setprecision(10) << list_time << "us\n";
-		std::cout << "NUMBER OF COMPARISONS: " << g_comparison_count << std::endl;
+		std::cout << "Time to process a sequence of " << ac \
+				  << " elements with " << "std::deque : " << std::setprecision(10) << deque_time << "us\n";
+		// std::cout << "NUMBER OF COMPARISONS: " << g_comparison_count << std::endl;
 	}
 	catch(const std::exception& e)
 	{

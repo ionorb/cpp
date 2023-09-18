@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <ctime>
 #include <vector>
-#include <list>
+#include <deque>
 #include <sys/time.h>
 #include <limits>
 
@@ -29,21 +29,24 @@ class PmergeMe
 
 		//methods
 		std::vector<int>	vectorSort();
-		std::list<int>		listSort();
+		std::deque<int>		dequeSort();
 
 		//getters
 		std::vector<int>	getVector() const;
-		std::list<int>		getList() const;
-		unsigned int		getNumElems() const;
+		std::deque<int>		getDeque() const;
+		// unsigned int		getNumElems() const;
 
 	private:
 		//attributes
-		std::list<int>		_list;
+		std::deque<int>		_deque;
 		std::vector<int>	_vector;
-		unsigned int		_num_elems;
+		// unsigned int		_num_elems;
 
 		//methods
 		void				proccessInput(char** av, int ac);
 };
+
+std::vector<int>	vecSort(std::vector<int> main_chain);
+std::deque<int>		deqSort(std::deque<int> main_chain);
 
 #endif

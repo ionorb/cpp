@@ -10,7 +10,7 @@ FLAGS += -I$(INC_DIR)
 BINARY = PmergeMe
 
 SOURCE_DIR = sources/
-SOURCES_FILES =	main.cpp PmergeMe.cpp
+SOURCES_FILES =	main.cpp PmergeMe.cpp vecSort.cpp deqSort.cpp
 
 SRCS = $(addprefix $(SOURCE_DIR), $(SOURCES_FILES))
 
