@@ -131,9 +131,11 @@ std::vector<int>	generate_insert_order(size_t size)
 	int					jacob_num = 0;
 	int					prev = 1;
 
+	/*SIMPLE ORDERING*/
 	// for (size_t i = 0; i < size; i++)
 	// 	insert_order.push_back(i);
 
+	/*JACOBSTHAL ORDERING*/
 	insert_order.push_back(0);
 	for (size_t j = 0; j < size; j++)
 	{
@@ -152,10 +154,10 @@ std::vector<int>	generate_insert_order(size_t size)
 			insert_order.push_back(i - 1);
 		prev = jacob_num;
 	}
-	std::cout << "order: ";
-	for (size_t i = 0; i < insert_order.size(); i++)
-		std::cout << insert_order[i] << ", ";
-	std::cout << "end\n";
+	// std::cout << "order: ";
+	// for (size_t i = 0; i < insert_order.size(); i++)
+	// 	std::cout << insert_order[i] << ", ";
+	// std::cout << "end\n";
 	return insert_order;
 }
 
@@ -216,34 +218,31 @@ std::vector<int>	PmergeMe::vectorSort()
 	// 	std::cout << stragler << std::endl;
 	// std::cout << std::endl;
 
-
 	/* Take the second value of each pair (the larger value) and push it to 'main_chain'
 	and take the first value of each pair (the smaller value) and push it to 'pend'. */
 	fill_main_and_pend(paired_sequence, main_chain, pend);
 
-	std::cout << "main_chain:\t";
-	for (size_t i = 0; i < main_chain.size(); i++)
-		std::cout << main_chain[i] << ",\t";
-	std::cout << "end\n";
+	// // printing main chain and pend vectors
+	// std::cout << "main_chain:\t";
+	// for (size_t i = 0; i < main_chain.size(); i++)
+	// 	std::cout << main_chain[i] << ",\t";
+	// std::cout << "end\n";
 
-	std::cout << "pend:\t\t";
-	for (size_t i = 0; i < pend.size(); i++)
-		std::cout << pend[i] << ",\t";
-	std::cout << "end\n";
+	// std::cout << "pend:\t\t";
+	// for (size_t i = 0; i < pend.size(); i++)
+	// 	std::cout << pend[i] << ",\t";
+	// std::cout << "end\n";
 
-	std::cout << "stragler:\t";
-	if (is_even)
-		std::cout << "FALSE\n";
-	else
-		std::cout << stragler << std::endl;
+	// std::cout << "stragler:\t";
+	// if (is_even)
+	// 	std::cout << "FALSE\n";
+	// else
+	// 	std::cout << stragler << std::endl;
 
 	/* Use binary search to insert values from 'pend' into 'main_chain'.
 	Values from pend to insert are picked in the order defined by jacobsthal numbers. */
 	insert_main_chain(main_chain, pend);
-	// for (int i = 0; i < 10; i++)
-	// 	std::cout << "JACOB " << i << ": " << jacob_num_generate(i) << std::endl;
-	// for (size_t i = 0; i < main_chain.size(); i++)
-	// 	std::cout 
+
 	if (!is_even)
 		main_chain.insert(main_chain.begin() + binary_insert(main_chain, stragler, main_chain.size() - 1), stragler);
 	return main_chain;
