@@ -3,3 +3,5 @@
 !*.*pp
 !Makefile
 !.gitignore
+!.vscode
+!.vscode/*
