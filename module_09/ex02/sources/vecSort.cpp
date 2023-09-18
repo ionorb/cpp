@@ -1,13 +1,4 @@
-#include "PmergeMe.hpp"
-
-int	jacob_num_generate(int j)
-{
-	int x = 0;
-
-	for (int i = 0; i < j; i++)
-		x = (1<<i) - x;
-	return x;
-}
+#include "sort_utils.hpp"
 
 std::vector< std::vector<int> >	make_paired_sequence(const std::vector<int> &vec)
 {
@@ -77,7 +68,7 @@ size_t	binary_insert(std::vector<int> &main_chain, int value, int right)
 	return left; // Return the index where the element should be inserted
 }
 
-std::vector<int>	generate_insert_order(size_t size)
+std::vector<int>	generate_insert_order_vec(size_t size)
 {
 	std::vector<int>	insert_order;
 	int					jacob_num = 0;
@@ -116,7 +107,7 @@ std::vector<int>	generate_insert_order(size_t size)
 void	insert_main_chain(std::vector<int> &main_chain, std::vector<int> pend)
 {
 	int					num_inserted = 0;
-	std::vector<int>	insert_order = generate_insert_order(pend.size());
+	std::vector<int>	insert_order = generate_insert_order_vec(pend.size());
 	
 	// main_chain.insert(main_chain.begin(), pend[0]);
 	// num_inserted++;
@@ -157,37 +148,9 @@ std::vector<int> vecSort(std::vector<int> main_chain)
 	// recursively sort the pairs int order of their second/larger values using merge sort method
 	paired_sequence = pair_merge_sort(paired_sequence);
 
-	// // printing paired sequence
-	// std::cout << "Paired Sequence:\n";
-	// for (size_t i = 0; i < paired_sequence.size(); i++)
-	// 	std::cout << "[" << paired_sequence[i][0] << ", " << paired_sequence[i][1] << "], ";
-	// std::cout << "stragler: ";
-	// if (is_even)
-	// 	std::cout << "FALSE\n";
-	// else
-	// 	std::cout << stragler << std::endl;
-	// std::cout << std::endl;
-
 	/* Take the second value of each pair (the larger value) and push it to 'main_chain'
 	and take the first value of each pair (the smaller value) and push it to 'pend'. */
 	fill_main_and_pend(paired_sequence, main_chain, pend);
-
-	// // printing main chain and pend vectors
-	// std::cout << "main_chain:\t";
-	// for (size_t i = 0; i < main_chain.size(); i++)
-	// 	std::cout << main_chain[i] << ",\t";
-	// std::cout << "end\n";
-
-	// std::cout << "pend:\t\t";
-	// for (size_t i = 0; i < pend.size(); i++)
-	// 	std::cout << pend[i] << ",\t";
-	// std::cout << "end\n";
-
-	// std::cout << "stragler:\t";
-	// if (is_even)
-	// 	std::cout << "FALSE\n";
-	// else
-	// 	std::cout << stragler << std::endl;
 
 	/* Use binary search to insert values from 'pend' into 'main_chain'.
 	Values from pend to insert are picked in the order defined by jacobsthal numbers. */

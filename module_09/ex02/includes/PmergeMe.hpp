@@ -12,11 +12,10 @@
 #include <deque>
 #include <sys/time.h>
 #include <limits>
+#include "sort_utils.hpp"
 
 #define SSTR( x ) static_cast< std::ostringstream & >( \
         ( std::ostringstream() << std::dec << x ) ).str()
-
-extern int g_comparison_count;
 
 class PmergeMe
 {
@@ -46,7 +45,6 @@ class PmergeMe
 		void				proccessInput(char** av, int ac);
 };
 
-std::vector<int>	vecSort(std::vector<int> main_chain);
-std::deque<int>		deqSort(std::deque<int> main_chain);
+// int					jacob_num_generate(int j);
 
 #endif
